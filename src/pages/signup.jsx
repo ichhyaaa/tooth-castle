@@ -30,5 +30,5 @@ export const SignUp =()=>{
                      <a href="#">Term and Condition</a> and <a href="#">Policy  Privacy</a> of Tooth Castle  </p> 
                     </div>
                     </div>
-    )
-}
+    );
+};
