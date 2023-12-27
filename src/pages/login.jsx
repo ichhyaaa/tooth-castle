@@ -1,8 +1,10 @@
-import {TextInput} from "../Components/TextInput";
+
 import {Button} from "../Components/Button";
 
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import logo from '../Assets/logo.png'
+import DentistImage from '../Assets/DentistImage.jpg'
 
 
 export const Login =()=>{
@@ -18,103 +20,84 @@ export const Login =()=>{
         console.log("email", email);
     };
 
-    return(
-        <div style={styles.container}>
-            <div style={styles.loginFormContainer}>
-                <div style={styles.loginForm}>
-                    <h1 style={{textAlign: "center"}}>LOGIN</h1>
-                    <div style={{display: "flex", flexDirection: "column"}}>
-                        <TextInput
-                            type="text"
-                            placeholder="Email"
-                            value={email}
-                            onTextChange={(text) => setEmail(text)}
-                        />
-                        <TextInput
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onTextChange={(text) => setPassword(text)}
-                        />
-                        <Button style={styles.button} onclick={onLogin} label={"LOGIN"} />
-                        <div style={{marginTop: 20}}>
-                            <div style={{textAlign: "center", marginTop: 10}}>
-                                Don't have an accont?
-                            </div>
-                            <div style={{
-                                textAlign: "center",
-                                marginTop: 10,
-                                textDecoration: "underline",
-                                textDecorationColor: "#1567eb",
-                                color: "#1567eb",
-                                cursor: "pointer",
-                            }}
-                            onClick={() => navigate("/signup")}
-                            >
-                            SIGNUP
-                            </div>
-                        </div>
-                    </div>
+    return (
+      <>
+          <div className="flex min-h-full flex-1 flex-col justify-center bg- px-6 py-20 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+              <img
+                className="mx-auto h-5 w-auto"
+                src={logo}
+                alt="Dental Clinic"
+              />
+              <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Login 
+              </h2>
+            </div>
+
+            <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+              <form className="space-y-6" action="#" method="POST">
+              
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium leading-3 text-gray-900">
+                    Email address
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
                 </div>
-            </div>  
-               
-        </div>
-        
+
+                <div>
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="password" className="block text-sm font-medium leading-3 text-gray-900">
+                      Password
+                    </label>
+                  </div>
+                  <div className="mt-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autoComplete="current-password"
+                      required
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Login
+                  </button>
+                </div>
+              </form>
+
+              <p className="mt-5 text-center text-sm text-gray-500"> 
+                <a href="" className="mt-10 text-center text-sm text-gray-500 font-semibold leading-3 text-indigo-600 hover:text-indigo-500"> 
+                 Don't have an account?
+                </a>
+              </p>
+              <div style={{
+                  textAlign: "center",
+                  marginTop: 10,
+                  textDecorationColor: "rgb(79 70 229)",
+                  color: "rgb(79 70 229)",
+                  cursor: "pointer",
+              }}
+              onClick={() => navigate("/signup")}
+              >
+              SIGNUP
+              </div>
+            </div>
+            </div>
+     </>  
     );
 };
-
-
-const styles = {
-    container: {
-      display: "flex",
-      flex: 1,
-      height: "100vh",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    loginFormContainer: {
-      display: "flex",
-      flex: 1,
-      padding: "40px",
-      height: "100%",
-      backgroundColor: "rgba(24, 92, 205, 0.31)",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    loginForm: {
-      display: "flex",
-      flexDirection: "column",
-      backgroundColor: "#ffffff",
-      width: "60%",
-      padding: 20,
-      borderRadius: 10,
-      boxShadow:
-        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-    },
-    input: {
-      marginBottom: "10px",
-      padding: "10px",
-      fontSize: "16px",
-      borderRadius: 5,
-    },
-    button: {
-      width: "100%",
-      padding: "10px",
-      fontSize: "16px",
-      backgroundColor: "#6315eb",
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-    },
-    imageContainer: {
-      flex: 1,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    image: {
-      width: "80%",
-      height: "60%",
-    },
-  };
-  
