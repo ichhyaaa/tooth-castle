@@ -5,12 +5,16 @@ import { Login } from './pages/login';
 import SignUp from './pages/signup';
 import Dashboard from './pages/dashboard'
 import Main from './pages/Main'
-import Appointment from './pages/appointment';
+import Appointment from './pages/user/appointment';
 import Home from './pages/home';
-import Appointment_Form from './pages/appointment_form';
+import Appointment_Form from './pages/user/appointment_form';
 import Example from './pages/example';
-import About_us from './pages/about_us';
-import Services from './pages/services';
+import About_us from './pages/user/about_us';
+import Services from './pages/user/services';
+import Admin from './pages/admin/admin';
+import OTP from './pages/otp';
+import Doctor from './pages/user/doctor'
+
 
 function App() {
   return (
@@ -26,6 +30,9 @@ function App() {
         <Route path='/about_us' element={<About_us/>}></Route>
         <Route path='/services' element={<Services/>}></Route>
         <Route path='appointment_form/' element={<Appointment_Form/>}></Route>
+        <Route path='admin/' element={<Admin/>}></Route>
+        <Route path='otp/' element={<OTP/>}></Route>
+        <Route path='/doctor' element={<Doctor/>}></Route>
 
         
 
