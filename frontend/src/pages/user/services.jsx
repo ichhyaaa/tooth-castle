@@ -15,8 +15,8 @@ import services6 from "../../Assets/services6.png";
 const navigation = [
   { name: "About us", href: "/about_us" },
   { name: "Services", href: "/services" },
-  { name: "Reviews", href: "/reviews" },
-  { name: "Financial Records", href: "financial-records" },
+  { name: "Reviews", href: "/review" },
+  { name: "Financial Records", href: "financial_record" },
 ];
 
 export default function Services() {
@@ -176,12 +176,12 @@ export default function Services() {
       </div>
 
       {/* PART 1 */}
-      <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div class="w-full items-center mx-auto max-w-screen-lg">
-          <div class="group grid w-full grid-cols-2">
+      <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+        <div className="w-full items-center mx-auto max-w-screen-lg">
+          <div className="group grid w-full grid-cols-2">
             <div>
-              <div class="pr-12">
-                <p class="peer mb-6 text-gray-400">
+              <div className="pr-12">
+                <p className="peer mb-6 text-gray-400">
                   The profession of orthodontics focuses on correcting
                   malpositioned teeth and jaws. For example, you should have
                   orthodontic treatment if your teeth are misaligned. Large
@@ -189,19 +189,19 @@ export default function Services() {
                   misaligned midlines, and open bites are among the other
                   issues.
                 </p>
-                <p class="mb-6 text-gray-400">
+                <p className="mb-6 text-gray-400">
                   Orthodontists use braces, aligners, and other appliances to
                   straighten teeth, improve bite, and enhance oral health and
                   aesthetics. By aligning teeth properly, orthodontics helps
                   prevent dental issues like cavities and gum disease, while
                   also improving facial appearance and boosting self-confidence.
                 </p>
-                <h3 class="mb-4 font-semibold text-xl text-gray-400">
+                <h3 className="mb-4 font-semibold text-xl text-gray-400">
                   Importance of using dental braces
                 </h3>
                 <ul
                   role="list"
-                  class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
+                  className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
                 >
                   <li>Improves bite function.</li>
                   <li>Provides versatile treatment options.</li>
@@ -209,8 +209,8 @@ export default function Services() {
                 </ul>
               </div>
             </div>
-            <div class="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
-              <div class="rounded-xl overflow-hidden">
+            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <img src={services1} alt="" />
               </div>
             </div>
@@ -219,25 +219,25 @@ export default function Services() {
       </div>
 
       {/* PART 2 */}
-      <div class="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div class="w-full items-center mx-auto max-w-screen-lg">
-          <div class="group grid w-full grid-cols-2">
-            <div class="pr-16 relative flex items-end flex-col before:block">
-              <div class="rounded-xl overflow-hidden">
+      <div className="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+        <div className="w-full items-center mx-auto max-w-screen-lg">
+          <div className="group grid w-full grid-cols-2">
+            <div className="pr-16 relative flex items-end flex-col before:block">
+              <div className="rounded-xl overflow-hidden">
                 <img src={services2} alt="" />
               </div>
             </div>
-            <div class="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
+            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
               <div>
-                <div class="pr-18">
-                  <p class="peer mb-6 text-gray-400">
+                <div className="pr-18">
+                  <p className="peer mb-6 text-gray-400">
                     Tooth extraction is the removal of a tooth from its socket
                     in the jawbone. It's done to alleviate pain, prevent
                     infection, create space for orthodontic treatment, manage
                     wisdom teeth, prepare for dentures, treat periodontal
                     disease, or address dental trauma.
                   </p>
-                  <p class="mb-6 text-gray-400">
+                  <p className="mb-6 text-gray-400">
                     Tooth extraction removes a tooth from its socket in the
                     jawbone. It addresses various dental issues such as severe
                     decay, infection, overcrowding, impacted wisdom teeth, or
@@ -246,10 +246,10 @@ export default function Services() {
                     and prepare for further dental treatments like dentures or
                     orthodontics.
                   </p>
-                  <h3 class="mb-4 font-semibold text-xl text-gray-400">
+                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
                     Importance of using Tooth Extraction
                   </h3>
-                  <ul class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500">
+                  <ul className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500">
                     <li>Prevents infection spread.</li>
                     <li>Relieves pain.</li>
                     <li>Manages wisdom teeth.</li>
@@ -262,23 +262,19 @@ export default function Services() {
       </div>
 
       {/* PART 3 */}
-      <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div class="w-full items-center mx-auto max-w-screen-lg">
-          <div class="group grid w-full grid-cols-2">
+      <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+        <div className="w-full items-center mx-auto max-w-screen-lg">
+          <div className="group grid w-full grid-cols-2">
             <div>
-              <div class="pr-12">
-                <p class="peer mb-6 text-gray-400">
-                  11111111111111
-                </p>
-                <p class="mb-6 text-gray-400">
-                  22222222222222
-                </p>
-                <h3 class="mb-4 font-semibold text-xl text-gray-400">
-                  Importance of using 
+              <div className="pr-12">
+                <p className="peer mb-6 text-gray-400">11111111111111</p>
+                <p className="mb-6 text-gray-400">22222222222222</p>
+                <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                  Importance of using
                 </h3>
                 <ul
                   role="list"
-                  class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
+                  className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
                 >
                   <li>1</li>
                   <li>2</li>
@@ -286,8 +282,8 @@ export default function Services() {
                 </ul>
               </div>
             </div>
-            <div class="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
-              <div class="rounded-xl overflow-hidden">
+            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <img src={services3} alt="" />
               </div>
             </div>
@@ -296,35 +292,35 @@ export default function Services() {
       </div>
 
       {/* PART 4 */}
-      <div class="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div class="w-full items-center mx-auto max-w-screen-lg">
-          <div class="group grid w-full grid-cols-2">
-            <div class="pr-16 relative flex items-end flex-col before:block">
-              <div class="rounded-xl overflow-hidden">
+      <div className="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+        <div className="w-full items-center mx-auto max-w-screen-lg">
+          <div className="group grid w-full grid-cols-2">
+            <div className="pr-16 relative flex items-end flex-col before:block">
+              <div className="rounded-xl overflow-hidden">
                 <img src={services4} alt="" />
               </div>
             </div>
-            <div class="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
+            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
               <div>
-                <div class="pr-18">
-                  <p class="peer mb-6 text-gray-400">
+                <div className="pr-18">
+                  <p className="peer mb-6 text-gray-400">
                     Teeth whitening is a procedure to lighten teeth color,
                     removing stains and discoloration using bleaching agents,
                     either at the dentist's office or with home kits, for a
                     brighter smile and improved appearance.
                   </p>
-                  <p class="mb-6 text-gray-400">
+                  <p className="mb-6 text-gray-400">
                     Teeth whitening removes stains and discoloration from the
                     teeth, resulting in a brighter and whiter smile. It helps
                     improve the appearance of teeth, enhancing overall smile
                     aesthetics and boosting self-confidence.
                   </p>
-                  <h3 class="mb-4 font-semibold text-xl text-gray-400">
+                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
                     Importance of using Teeth Whitening
                   </h3>
                   <ul
                     role="list"
-                    class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
+                    className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
                   >
                     <li>Enhances appearance</li>
                     <li>Reverses aging effects</li>
@@ -338,31 +334,31 @@ export default function Services() {
       </div>
 
       {/* PART 5 */}
-      <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div class="w-full items-center mx-auto max-w-screen-lg">
-          <div class="group grid w-full grid-cols-2">
+      <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+        <div className="w-full items-center mx-auto max-w-screen-lg">
+          <div className="group grid w-full grid-cols-2">
             <div>
-              <div class="pr-12">
-                <p class="peer mb-6 text-gray-400">
+              <div className="pr-12">
+                <p className="peer mb-6 text-gray-400">
                   Endodontics is a branch of dentistry focused on diagnosing and
                   treating issues related to the dental pulp and tissues inside
                   the tooth, including root canals. It involves procedures such
                   as root canal therapy to save teeth with infected or damaged
                   pulp, relieving pain and restoring oral health.
                 </p>
-                <p class="mb-6 text-gray-400">
+                <p className="mb-6 text-gray-400">
                   Endodontics specializes in diagnosing and treating problems
                   related to the dental pulp and tissues inside the tooth. This
                   includes performing procedures like root canal therapy to save
                   teeth with infected or damaged pulp, alleviating pain, and
                   preserving oral health. User
                 </p>
-                <h3 class="mb-4 font-semibold text-xl text-gray-400">
+                <h3 className="mb-4 font-semibold text-xl text-gray-400">
                   Importance of using Endodontics
                 </h3>
                 <ul
                   role="list"
-                  class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
+                  className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
                 >
                   <li>Saves teeth from extraction.</li>
                   <li>Treats infected or inflamed dental pulp.</li>
@@ -370,8 +366,8 @@ export default function Services() {
                 </ul>
               </div>
             </div>
-            <div class="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
-              <div class="rounded-xl overflow-hidden">
+            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
+              <div className="rounded-xl overflow-hidden">
                 <img src={services5} alt="" />
               </div>
             </div>
@@ -380,18 +376,18 @@ export default function Services() {
       </div>
 
       {/* PART 6 */}
-      <div class="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div class="w-full items-center mx-auto max-w-screen-lg">
-          <div class="group grid w-full grid-cols-2">
-            <div class="pr-16 relative flex items-end flex-col before:block">
-              <div class="rounded-xl overflow-hidden">
+      <div className="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+        <div className="w-full items-center mx-auto max-w-screen-lg">
+          <div className="group grid w-full grid-cols-2">
+            <div className="pr-16 relative flex items-end flex-col before:block">
+              <div className="rounded-xl overflow-hidden">
                 <img src={services6} alt="" />
               </div>
             </div>
-            <div class="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
+            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
               <div>
-                <div class="pr-18">
-                  <p class="peer mb-6 text-gray-400">
+                <div className="pr-18">
+                  <p className="peer mb-6 text-gray-400">
                     Oral pathology is the study and diagnosis of diseases
                     affecting the mouth, jaws, and related structures. It
                     involves identifying and managing conditions like
@@ -400,17 +396,17 @@ export default function Services() {
                     require collaboration with other specialists for
                     comprehensive care.
                   </p>
-                  <p class="mb-6 text-gray-400">
+                  <p className="mb-6 text-gray-400">
                     Oral pathology diagnoses and manages diseases and conditions
                     affecting the mouth and related structures, including
                     infections, tumors, and developmental abnormalities.
                   </p>
-                  <h3 class="mb-4 font-semibold text-xl text-gray-400">
+                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
                     Imporatnce of using Oral Pathology
                   </h3>
                   <ul
                     role="list"
-                    class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
+                    className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
                   >
                     <li>Diagnoses diseases accurately.</li>
                     <li>Prevents complications.</li>
@@ -426,128 +422,128 @@ export default function Services() {
       {/* footer */}
 
       <div>
-          <footer class="relative bg-blueGray-200 pt-8 pb-6">
-            <div class="container mx-auto px-4">
-              <div class="flex flex-wrap text-left lg:text-left">
-                <div class="w-full lg:w-6/12 px-4">
-                  <h4 class="text-3xl fonat-semibold text-blueGray-700">
-                    Let's keep in touch!
-                  </h4>
-                  <h3 class="text-3xl fonat-semibold text-blueGray-700">
-                    Contact Us!
-                  </h3>
-                  <br />
-                  <h5 class="text-lg mt-0 mb-2 text-blueGray-600">Call</h5>
-                  <p> 9847691402 </p>
-                  <p> 014492598</p>
-                  <br />
-                </div>
-                <div class="w-full lg:w-6/12 px-4">
-                  <div class="flex flex-wrap items-top mb-6">
-                    <div class="w-full lg:w-4/12 px-4 ml-auto">
-                      <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                        Useful Links
-                      </span>
-                      <ul class="list-unstyled">
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="/about_us"
-                          >
-                            About Us
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="/services"
-                          >
-                            Services
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="/reviews"
-                          >
-                            Reviews
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="/finance-records"
-                          >
-                            Finance Records
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="w-full lg:w-4/12 px-4">
-                      <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                        Useful Services
-                      </span>
-                      <ul class="list-unstyled">
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile"
-                          >
-                            MIT License
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="https://creative-tim.com/terms?ref=njs-profile"
-                          >
-                            Terms &amp; Conditions
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="https://creative-tim.com/privacy?ref=njs-profile"
-                          >
-                            Privacy Policy
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="https://creative-tim.com/contact-us?ref=njs-profile"
-                          >
-                            Contact Us
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+        <footer className="relative bg-blueGray-200 pt-8 pb-6">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap text-left lg:text-left">
+              <div className="w-full lg:w-6/12 px-4">
+                <h4 className="text-3xl fonat-semibold text-blueGray-700">
+                  Let's keep in touch!
+                </h4>
+                <h3 className="text-3xl fonat-semibold text-blueGray-700">
+                  Contact Us!
+                </h3>
+                <br />
+                <h5 className="text-lg mt-0 mb-2 text-blueGray-600">Call</h5>
+                <p> 9847691402 </p>
+                <p> 014492598</p>
+                <br />
               </div>
-              <hr class="my-6 border-blueGray-300" />
-              <div class="flex flex-wrap items-center md:justify-between justify-center">
-                <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-                  <div class="text-sm text-blueGray-500 font-semibold py-1">
-                    Copyright © <span id="get-current-year">2021</span>
-                    <a
-                      href="https://www.creative-tim.com/product/notus-js"
-                      class="text-blueGray-500 hover:text-gray-800"
-                      target="_blank"
-                    />{" "}
-                    ToothCastle by
-                    <a
-                      href="https://www.creative-tim.com?ref=njs-profile"
-                      class="text-blueGray-500 hover:text-blueGray-800"
-                    >
-                      Ichhya Koirala
-                    </a>
+              <div className="w-full lg:w-6/12 px-4">
+                <div className="flex flex-wrap items-top mb-6">
+                  <div className="w-full lg:w-4/12 px-4 ml-auto">
+                    <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                      Useful Links
+                    </span>
+                    <ul className="list-unstyled">
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="/about_us"
+                        >
+                          About Us
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="/services"
+                        >
+                          Services
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="/reviews"
+                        >
+                          Reviews
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="/finance-records"
+                        >
+                          Finance Records
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="w-full lg:w-4/12 px-4">
+                    <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                      Useful Services
+                    </span>
+                    <ul className="list-unstyled">
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile"
+                        >
+                          MIT License
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://creative-tim.com/terms?ref=njs-profile"
+                        >
+                          Terms &amp; Conditions
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://creative-tim.com/privacy?ref=njs-profile"
+                        >
+                          Privacy Policy
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                          href="https://creative-tim.com/contact-us?ref=njs-profile"
+                        >
+                          Contact Us
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
-          </footer>
-        </div>
+            <hr className="my-6 border-blueGray-300" />
+            <div className="flex flex-wrap items-center md:justify-between justify-center">
+              <div className="w-full md:w-4/12 px-4 mx-auto text-center">
+                <div className="text-sm text-blueGray-500 font-semibold py-1">
+                  Copyright © <span id="get-current-year">2021</span>
+                  <a
+                    href="https://www.creative-tim.com/product/notus-js"
+                    className="text-blueGray-500 hover:text-gray-800"
+                    target="_blank"
+                  />{" "}
+                  ToothCastle by
+                  <a
+                    href="https://www.creative-tim.com?ref=njs-profile"
+                    className="text-blueGray-500 hover:text-blueGray-800"
+                  >
+                    Ichhya Koirala
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

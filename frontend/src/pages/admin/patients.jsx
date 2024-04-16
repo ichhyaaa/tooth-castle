@@ -2,31 +2,25 @@ import React, { useState } from "react";
 import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function Patients() {
   const navigate = useNavigate();
 
- 
   return (
-    
     <>
-      
-
       <div>
-        <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
-          <div class="px-3 py-3 lg:px-5 lg:pl-3">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center justify-start">
+        <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
+          <div className="px-3 py-3 lg:px-5 lg:pl-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center justify-start">
                 <button
                   id="toggleSidebarMobile"
                   aria-expanded="true"
                   aria-controls="sidebar"
-                  class="lg:hidden mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded"
+                  className="lg:hidden mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded"
                 >
                   <svg
                     id="toggleSidebarMobileHamburger"
-                    class="w-6 h-6"
+                    className="w-6 h-6"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +33,7 @@ export default function Patients() {
                   </svg>
                   <svg
                     id="toggleSidebarMobileClose"
-                    class="w-6 h-6 hidden"
+                    className="w-6 h-6 hidden"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -53,32 +47,32 @@ export default function Patients() {
                 </button>
                 <a
                   href="#"
-                  class="text-xl font-bold flex items-center lg:ml-2.5"
+                  className="text-xl font-bold flex items-center lg:ml-2.5"
                 >
-                  <img src={logo} class="h-6 mr-2" alt="Toth Castle Logo" />
+                  <img src={logo} className="h-6 mr-2" alt="Toth Castle Logo" />
                 </a>
               </div>
-              <div class="flex items-center"></div>
+              <div className="flex items-center"></div>
             </div>
           </div>
         </nav>
-        <div class="flex overflow-hidden bg-white pt-16">
+        <div className="flex overflow-hidden bg-white pt-16">
           <aside
             id="sidebar"
-            class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+            className="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar"
           >
-            <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
-              <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                <div class="flex-1 px-3 bg-white divide-y space-y-1">
-                  <ul class="space-y-2 pb-2">
+            <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
+              <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                <div className="flex-1 px-3 bg-white divide-y space-y-1">
+                  <ul className="space-y-2 pb-2">
                     <li>
                       <a
                         href="#"
-                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                        className="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
                       >
                         <svg
-                          class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
+                          className="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -86,24 +80,24 @@ export default function Patients() {
                           <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                           <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                         </svg>
-                        <span class="ml-3">Dashboard</span>
+                        <span className="ml-3">Dashboard</span>
                       </a>
                     </li>
                     <li>
                       <a
                         href="#"
                         target="_blank"
-                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
+                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                       >
                         <svg
-                          class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                         </svg>
-                        <span class="ml-3 flex-1 whitespace-nowrap">
+                        <span className="ml-3 flex-1 whitespace-nowrap">
                           Appointment
                         </span>
                       </a>
@@ -112,10 +106,10 @@ export default function Patients() {
                       <a
                         href="#"
                         target="_blank"
-                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
+                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                       >
                         <svg
-                          class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +120,7 @@ export default function Patients() {
                             clip-rule="evenodd"
                           ></path>
                         </svg>
-                        <span class="ml-3 flex-1 whitespace-nowrap">
+                        <span className="ml-3 flex-1 whitespace-nowrap">
                           Doctors
                         </span>
                       </a>
@@ -134,10 +128,10 @@ export default function Patients() {
                     <li>
                       <a
                         href="#"
-                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
+                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                       >
                         <svg
-                          class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +142,7 @@ export default function Patients() {
                             clip-rule="evenodd"
                           ></path>
                         </svg>
-                        <span class="ml-3 flex-1 whitespace-nowrap">
+                        <span className="ml-3 flex-1 whitespace-nowrap">
                           Patients
                         </span>
                       </a>
@@ -156,10 +150,10 @@ export default function Patients() {
                     <li>
                       <a
                         href="#"
-                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
+                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                       >
                         <svg
-                          class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -170,20 +164,20 @@ export default function Patients() {
                             clip-rule="evenodd"
                           ></path>
                         </svg>
-                        <span class="ml-3 flex-1 whitespace-nowrap">
+                        <span className="ml-3 flex-1 whitespace-nowrap">
                           Payments
                         </span>
                       </a>
                     </li>
                   </ul>
-                  <div class="space-y-2 pt-2">
+                  <div className="space-y-2 pt-2">
                     <a
                       href="#"
                       target="_blank"
-                      class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
+                      className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
                     >
                       <svg
-                        class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                        className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -195,16 +189,16 @@ export default function Patients() {
                           clip-rule="evenodd"
                         ></path>
                       </svg>
-                      <span class="ml-3">Report</span>
+                      <span className="ml-3">Report</span>
                     </a>
 
                     <a
                       href="#"
                       target="_blank"
-                      class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
+                      className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
                     >
                       <svg
-                        class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                        className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -215,15 +209,15 @@ export default function Patients() {
                           clip-rule="evenodd"
                         ></path>
                       </svg>
-                      <span class="ml-3">Help</span>
+                      <span className="ml-3">Help</span>
                     </a>
                     <li>
                       <a
                         href="#"
-                        class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
+                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                       >
                         <svg
-                          class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
+                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +228,7 @@ export default function Patients() {
                             clip-rule="evenodd"
                           ></path>
                         </svg>
-                        <span class="ml-3 flex-1 whitespace-nowrap">
+                        <span className="ml-3 flex-1 whitespace-nowrap">
                           Sign Out
                         </span>
                       </a>
@@ -245,91 +239,158 @@ export default function Patients() {
             </div>
           </aside>
           <div
-            class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
+            className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
             id="sidebarBackdrop"
           ></div>
           <div
             id="main-content"
-            class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
+            className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
           >
             <main>
-            <table class="border-collapse w-full">
-    <thead>
-        <tr>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Company name</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Country</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Status</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Company name</span>
-                KnobHome
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                German
-            </td>
-          	<td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-                <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">deleted</span>
-          	</td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                <a href="#" class="text-blue-400 hover:text-blue-600 underline">Edit</a>
-                <a href="#" class="text-blue-400 hover:text-blue-600 underline pl-6">Remove</a>
-            </td>
-        </tr>
-        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Company name</span>
-                Squary
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                Schweden
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-                <span class="rounded bg-green-400 py-1 px-3 text-xs font-bold">active</span>
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                <a href="#" class="text-blue-400 hover:text-blue-600 underline">Edit</a>
-                <a href="#" class="text-blue-400 hover:text-blue-600 underline pl-6">Remove</a>
-            </td>
-        </tr>
-        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Company name</span>
-				ghome
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Country</span>
-                Switzerland
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-                <span class="rounded bg-yellow-400 py-1 px-3 text-xs font-bold">inactive</span>
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                <a href="#" class="text-blue-400 hover:text-blue-600 underline">Edit</a>
-                <a href="#" class="text-blue-400 hover:text-blue-600 underline pl-6">Remove</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-              
+              <table className="border-collapse w-full">
+                <thead>
+                  <tr>
+                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                      Company name
+                    </th>
+                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                      Country
+                    </th>
+                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                      Status
+                    </th>
+                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Company name
+                      </span>
+                      KnobHome
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Country
+                      </span>
+                      German
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Status
+                      </span>
+                      <span className="rounded bg-red-400 py-1 px-3 text-xs font-bold">
+                        deleted
+                      </span>
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Actions
+                      </span>
+                      <a
+                        href="#"
+                        className="text-blue-400 hover:text-blue-600 underline"
+                      >
+                        Edit
+                      </a>
+                      <a
+                        href="#"
+                        className="text-blue-400 hover:text-blue-600 underline pl-6"
+                      >
+                        Remove
+                      </a>
+                    </td>
+                  </tr>
+                  <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Company name
+                      </span>
+                      Squary
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Country
+                      </span>
+                      Schweden
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Status
+                      </span>
+                      <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold">
+                        active
+                      </span>
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Actions
+                      </span>
+                      <a
+                        href="#"
+                        className="text-blue-400 hover:text-blue-600 underline"
+                      >
+                        Edit
+                      </a>
+                      <a
+                        href="#"
+                        className="text-blue-400 hover:text-blue-600 underline pl-6"
+                      >
+                        Remove
+                      </a>
+                    </td>
+                  </tr>
+                  <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Company name
+                      </span>
+                      ghome
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Country
+                      </span>
+                      Switzerland
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Status
+                      </span>
+                      <span className="rounded bg-yellow-400 py-1 px-3 text-xs font-bold">
+                        inactive
+                      </span>
+                    </td>
+                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
+                        Actions
+                      </span>
+                      <a
+                        href="#"
+                        className="text-blue-400 hover:text-blue-600 underline"
+                      >
+                        Edit
+                      </a>
+                      <a
+                        href="#"
+                        className="text-blue-400 hover:text-blue-600 underline pl-6"
+                      >
+                        Remove
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </main>
-            <footer class="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
-              <ul class="flex items-center flex-wrap mb-6 md:mb-0">
+            <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
+              <ul className="flex items-center flex-wrap mb-6 md:mb-0">
                 <li>
                   <a
                     href="#"
-                    class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                    className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
                   >
                     Terms and conditions
                   </a>
@@ -337,7 +398,7 @@ export default function Patients() {
                 <li>
                   <a
                     href="#"
-                    class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                    className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
                   >
                     Privacy Policy
                   </a>
@@ -345,7 +406,7 @@ export default function Patients() {
                 <li>
                   <a
                     href="#"
-                    class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                    className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
                   >
                     Licensing
                   </a>
@@ -353,7 +414,7 @@ export default function Patients() {
                 <li>
                   <a
                     href="#"
-                    class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
+                    className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6"
                   >
                     Cookie Policy
                   </a>
@@ -361,16 +422,16 @@ export default function Patients() {
                 <li>
                   <a
                     href="#"
-                    class="text-sm font-normal text-gray-500 hover:underline"
+                    className="text-sm font-normal text-gray-500 hover:underline"
                   >
                     Contact
                   </a>
                 </li>
               </ul>
-              <div class="flex sm:justify-center space-x-6">
-                <a href="#" class="text-gray-500 hover:text-gray-900">
+              <div className="flex sm:justify-center space-x-6">
+                <a href="#" className="text-gray-500 hover:text-gray-900">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -382,9 +443,9 @@ export default function Patients() {
                     />
                   </svg>
                 </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900">
+                <a href="#" className="text-gray-500 hover:text-gray-900">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -396,9 +457,9 @@ export default function Patients() {
                     />
                   </svg>
                 </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900">
+                <a href="#" className="text-gray-500 hover:text-gray-900">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -406,9 +467,9 @@ export default function Patients() {
                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                   </svg>
                 </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900">
+                <a href="#" className="text-gray-500 hover:text-gray-900">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -420,9 +481,9 @@ export default function Patients() {
                     />
                   </svg>
                 </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900">
+                <a href="#" className="text-gray-500 hover:text-gray-900">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -436,9 +497,9 @@ export default function Patients() {
                 </a>
               </div>
             </footer>
-            <p class="text-center text-sm text-gray-500 my-10">
+            <p className="text-center text-sm text-gray-500 my-10">
               &copy; 2019-2021{" "}
-              <a href="#" class="hover:underline" target="_blank">
+              <a href="#" className="hover:underline" target="_blank">
                 Themesberg
               </a>
               . All rights reserved.

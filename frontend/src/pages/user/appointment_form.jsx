@@ -4,19 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-
 const navigation = [
   { name: "About us", href: "/about_us" },
   { name: "Services", href: "/services" },
   { name: "Reviews", href: "/review" },
-  { name: "Financial Records", href: "financial-records" },
+  { name: "Financial Records", href: "financial_record" },
 ];
 
 export default function Appointment_Form() {
   const navigate = useNavigate();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const handleSubmit = () => {navigate("/")};
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,50 +24,73 @@ export default function Appointment_Form() {
   const [email, setEmail] = useState("");
   const [problem, setProblem] = useState("");
   const [date, setDOB] = useState("");
-  //const [errors, setErrors] = useState({});
- 
- 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setErrors({});
+  const [errors, setErrors] = useState({});
 
-  const errors = {}; // Initialize an empty object to store errors
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors({});
 
-  if (firstName === "") {
-    errors.firstName = "First Name is required"; // Add error message to errors object
-  }
+    // Initialize an empty object to store errors
+    if (firstName === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firstName: "First Name is required",
+      }));
+    }
 
-  if (lastName === "") {
-    errors.lastName = "Last Name is required"; // Add error message to errors object
-  }
+    if (lastName === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        lastName: "Last Name is required",
+      }));
+    }
 
-  if (age === "") {
-    errors.age = "Age is required"; // Add error message to errors object
-  }
+    if (age === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        age: "Age is required",
+      }));
+    }
 
-  if (phone === "") {
-    errors.phone = "Phone is required"; // Add error message to errors object
-  }
+    if (phone === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        phone: "Phone is required",
+      }));
+    }
 
-  if (address === "") {
-    errors.address = "Address is required"; // Add error message to errors object
-  }
+    if (address === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        address: "Address is required",
+      }));
+    }
 
-  if (email === "") {
-    errors.email = "Email is required"; // Add error message to errors object
-  }
+    if (email === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email is required",
+      }));
+    }
 
-  if (date === "") {
-    errors.date = "DOB is required"; // Add error message to errors object
-  }
+    if (date === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        date: "Date is required",
+      }));
+    }
 
-  if (problem === "") {
-    errors.problem = "Problem is required"; // Add error message to errors object
-  }
+    if (problem === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        problem: "Problem is required",
+      }));
+    }
 
-
-
-  
+    if (Object.keys(errors).length === 0) {
+      return;
+    }
+  };
 
   return (
     // header
@@ -194,12 +215,12 @@ export default function Appointment_Form() {
             </p>
             <div className="mt-7 sm:w-full sm:max-w-[650px]">
               <form className="space-y-6">
-                <div class="-mx-3 flex flex-wrap">
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
                       <label
                         for="fName"
-                        class="mb-2 block text-base font-medium text-gray-900"
+                        className="mb-2 block text-base font-medium text-gray-900"
                       >
                         First Name
                       </label>
@@ -210,7 +231,7 @@ export default function Appointment_Form() {
                         autoComplete="fname"
                         required
                         placeholder="First Name*"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setFirstName(e.target.value)}
                       />
                     </div>
@@ -218,11 +239,11 @@ export default function Appointment_Form() {
                       <p style={{ color: "red" }}>{errors.firstName}</p>
                     )}
                   </div>
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
                       <label
                         for="lName"
-                        class="mb-2 block text-base font-medium text-[#07074D]"
+                        className="mb-2 block text-base font-medium text-[#07074D]"
                       >
                         Last Name
                       </label>
@@ -233,7 +254,7 @@ export default function Appointment_Form() {
                         autoComplete="lname"
                         required
                         placeholder="Last Name*"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setLastName(e.target.value)}
                       />
                     </div>
@@ -242,12 +263,12 @@ export default function Appointment_Form() {
                     )}
                   </div>
                 </div>
-                <div class="-mx-3 flex flex-wrap">
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-50  ">
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-50  ">
                       <label
                         for="age"
-                        class="mb-2 block text-base font-medium text-gray-900"
+                        className="mb-2 block text-base font-medium text-gray-900"
                       >
                         Age
                       </label>
@@ -258,19 +279,17 @@ export default function Appointment_Form() {
                         autoComplete="age"
                         required
                         placeholder="Age* (Must be over 18)"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setAge(e.target.value)}
                       />
                     </div>
-                    {errors.age && (
-                      <p style={{ color: "red" }}>{errors.age}</p>
-                    )}
+                    {errors.age && <p style={{ color: "red" }}>{errors.age}</p>}
                   </div>
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
                       <label
                         for="lName"
-                        class="mb-2 block text-base font-medium text-[#07074D]"
+                        className="mb-2 block text-base font-medium text-[#07074D]"
                       >
                         Phone Number
                       </label>
@@ -281,7 +300,7 @@ export default function Appointment_Form() {
                         autoComplete="phonenumber"
                         required
                         placeholder="Phone Number*"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
@@ -290,12 +309,12 @@ export default function Appointment_Form() {
                     )}
                   </div>
                 </div>
-                <div class="-mx-3 flex flex-wrap">
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
                       <label
                         for="address"
-                        class="mb-2 block text-base font-medium text-gray-900"
+                        className="mb-2 block text-base font-medium text-gray-900"
                       >
                         Address
                       </label>
@@ -306,7 +325,7 @@ export default function Appointment_Form() {
                         autoComplete="address"
                         required
                         placeholder="Address*"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
@@ -314,11 +333,11 @@ export default function Appointment_Form() {
                       <p style={{ color: "red" }}>{errors.address}</p>
                     )}
                   </div>
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
                       <label
                         for="email"
-                        class="mb-2 block text-base font-medium text-[#07074D]"
+                        className="mb-2 block text-base font-medium text-[#07074D]"
                       >
                         Email
                       </label>
@@ -329,7 +348,7 @@ export default function Appointment_Form() {
                         autoComplete="email"
                         required
                         placeholder="Email*"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setEmail(e.target.value)}
                       />
                       <p>
@@ -343,12 +362,12 @@ export default function Appointment_Form() {
                   </div>
                 </div>
 
-                <div class="-mx-3 flex flex-wrap">
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
                       <label
                         for="date"
-                        class="mb-2 block text-base font-medium text-[#07074D]"
+                        className="mb-2 block text-base font-medium text-[#07074D]"
                       >
                         Date
                       </label>
@@ -356,7 +375,7 @@ export default function Appointment_Form() {
                         type="date"
                         name="date"
                         id="date"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setDOB(e.target.value)}
                       />
                     </div>
@@ -366,12 +385,12 @@ export default function Appointment_Form() {
                   </div>
                 </div>
 
-                <div class="-mx-3 flex flex-wrap">
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
                       <label
                         for="address"
-                        class="mb-2 block text-base font-medium text-gray-900"
+                        className="mb-2 block text-base font-medium text-gray-900"
                       >
                         Problem
                       </label>
@@ -382,7 +401,7 @@ export default function Appointment_Form() {
                         autoComplete="problem"
                         required
                         placeholder="Share your problem*"
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-20 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-20 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         onChange={(e) => setProblem(e.target.value)}
                       />
                     </div>

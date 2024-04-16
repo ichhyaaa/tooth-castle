@@ -1,38 +1,47 @@
-const router = require('express').Router();
-const { appointment, validate } = require('../../models/appointment');
-const bcrypt = require('bcrypt');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-router.post("/appointment/add", async (req, res) => {
-	try {
-		const { error } = validate(req.body);
-		if (error)
-			return res.status(400).send({ message: error.details[0].message });
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-		const user = await User.findOne({ email: req.body.email });
-		if (!user)
-			return res.status(401).send({ message: "Invalid Email or Password" });
+// Middleware to parse incoming request bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-		const validPassword = await bcrypt.compare(
-			req.body.password,
-			user.password
-		);
-		if (!validPassword)
-			return res.status(401).send({ message: "Invalid Email or Password" });
+// Endpoint to handle form submission
+app.post("/api/appointment", (req, res) => {
+  // Extract form data from the request body
+  const { firstName, lastName, age, phone, address, email, problem, date } = req.body;
 
-		const token = user.generateAuthToken();
-		
-		return res.status(200).send({ token, message: "logged in successfully" });
-	} catch (error) {
-		return res.status(500).send({ message: "Internal Server Error", error });
-	}
+  // Perform validation if necessary
+  if (!firstName || !lastName || !age || !phone || !address || !email || !problem || !date) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  // Process the appointment data, e.g., save it to a database
+  // Example using a hypothetical database model
+  Appointment.create({
+    firstName,
+    lastName,
+    age,
+    phone,
+    address,
+    email,
+    problem,
+    date
+  })
+    .then(appointment => {
+      // Respond with success message
+      res.status(200).json({ message: "Appointment submitted successfully", appointment });
+    })
+    .catch(error => {
+      // Handle errors
+      console.error("Error submitting appointment:", error);
+      res.status(500).json({ error: "Internal server error" });
+    });
 });
 
-const validate = (data) => {
-	const schema = Joi.object({
-		email: Joi.string().email().required().label("Email"),
-		password: Joi.string().required().label("Password"),
-	});
-	return schema.validate(data);
-};
-
-module.exports = router;
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

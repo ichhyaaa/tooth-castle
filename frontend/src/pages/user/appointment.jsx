@@ -9,6 +9,7 @@ import services3 from "../../Assets/services3.png";
 import services4 from "../../Assets/services4.png";
 import { useAuth } from "../../auth/AuthContext";
 import React, { useState, useContext } from "react";
+import { Button } from "react-bootstrap";
 
 import {
   FaFacebookF,
@@ -21,7 +22,7 @@ const navigation = [
   { name: "About us", href: "/about_us" },
   { name: "Services", href: "/services" },
   { name: "Reviews", href: "/review" },
-  { name: "Financial Records", href: "financial-records" },
+  { name: "Financial Records", href: "financial_record" },
 ];
 
 export default function Appointment() {
@@ -68,14 +69,37 @@ export default function Appointment() {
               </a>
             ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log In <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
+          {user ? (
+            // user.first_name
+            <div>
+              <div className="dropdown">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {user.first_name}
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a onClick={""} className="dropdown-item" href="/login">
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+              <a
+                href="/login"
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Log In <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          )}
         </nav>
         <Dialog
           as="div"
@@ -111,14 +135,6 @@ export default function Appointment() {
                       {item.name}
                     </a>
                   ))}
-                </div>
-                <div className="py-6" onClick={() => navigate("/login")}>
-                  <a
-                    href="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Log In
-                  </a>
                 </div>
               </div>
             </div>
@@ -171,13 +187,15 @@ export default function Appointment() {
       </div>
 
       {/* introduction part */}
-      <div class="h-screen bg-gray-50 flex items-center p-5">
-        <section class="bg-cover bg-center py-10 w-full">
-          <div class="container mx-auto text-left text-black">
-            <div class="flex items-center">
-              <div class="w-1/2">
-                <h1 class="text-5xl font-medium mb-6 mt-10">Introduction</h1>
-                <p class="text-xl mb-12">
+      <div className="h-screen bg-gray-50 flex items-center p-5">
+        <section className="bg-cover bg-center py-10 w-full">
+          <div className="container mx-auto text-left text-black">
+            <div className="flex items-center">
+              <div className="w-1/2">
+                <h1 className="text-5xl font-medium mb-6 mt-10">
+                  Introduction
+                </h1>
+                <p className="text-xl mb-12">
                   Nestled within our bustling city, Tooth Castle stands as a
                   beacon of dental excellence and care. Founded with passion by
                   Dr. Preety Neupane, our clinic transcends mere dentistry—it's
@@ -196,10 +214,10 @@ export default function Appointment() {
                   cherished jewel in our crown of compassion and commitment.
                 </p>
               </div>
-              <div class="flex flex-col w-1/2 pl-16">
+              <div className="flex flex-col w-1/2 pl-16">
                 <img
                   src={image}
-                  class="h-92 w-full object-cover rounded-xl"
+                  className="h-92 w-full object-cover rounded-xl"
                   alt="Layout Image"
                 />
               </div>
@@ -210,96 +228,96 @@ export default function Appointment() {
 
       {/* Services part */}
 
-      <div class="flex justify-center items-center">
-        <div class="2xl:mx-auto 2xl:container py-12 px-4 sm:px-6 xl:px-20 2xl:px-0 w-full">
-          <div class="flex flex-col jusitfy-center items-center space-y-10">
-            <div class="flex flex-col justify-center items-center ">
-              <h1 class="text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-gray-800 dark:text-white">
+      <div className="flex justify-center items-center">
+        <div className="2xl:mx-auto 2xl:container py-12 px-4 sm:px-6 xl:px-20 2xl:px-0 w-full">
+          <div className="flex flex-col jusitfy-center items-center space-y-10">
+            <div className="flex flex-col justify-center items-center ">
+              <h1 className="text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-gray-800 dark:text-white">
                 Our Sevices
               </h1>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 md:gap-x-8 w-full">
-              <div class="relative group flex justify-center items-center h-full w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 md:gap-x-8 w-full">
+              <div className="relative group flex justify-center items-center h-full w-full">
                 <img
-                  class="object-center object-cover h-full w-full"
+                  className="object-center object-cover h-full w-full"
                   src={services1}
                   alt="services-image"
                 />
-                <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                   Dental Braces
                 </button>
 
-                <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
 
-              <div class="flex flex-col space-y-4 md:space-y-8 mt-4 md:mt-0">
-                <div class="relative group flex justify-center items-center h-full w-full">
+              <div className="flex flex-col space-y-4 md:space-y-8 mt-4 md:mt-0">
+                <div className="relative group flex justify-center items-center h-full w-full">
                   <img
-                    class="object-center object-cover h-full w-full"
+                    className="object-center object-cover h-full w-full"
                     src={services2}
                     alt="services-image"
                   />
-                  <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                     Tooth Extraction
                   </button>
-                  <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                 </div>
-                <div class="relative group flex justify-center items-center h-full w-full">
+                <div className="relative group flex justify-center items-center h-full w-full">
                   <img
-                    class="object-center object-cover h-full w-full"
+                    className="object-center object-cover h-full w-full"
                     src={services3}
                     alt="services-image"
                   />
-                  <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                     Cement Teeth
                   </button>
-                  <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                 </div>
               </div>
 
-              <div class="relative group justify-center items-center h-full w-full hidden lg:flex">
+              <div className="relative group justify-center items-center h-full w-full hidden lg:flex">
                 <img
-                  class="object-center object-cover h-full w-full"
+                  className="object-center object-cover h-full w-full"
                   src={services4}
                   alt="services-image"
                 />
-                <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                   Teeth Whitening
                 </button>
-                <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
-              <div class="relative group flex justify-center items-center h-full w-full mt-4 md:hidden md:mt-8 lg:hidden">
+              <div className="relative group flex justify-center items-center h-full w-full mt-4 md:hidden md:mt-8 lg:hidden">
                 <img
-                  class="object-center object-cover h-full w-full hidden md:block"
+                  className="object-center object-cover h-full w-full hidden md:block"
                   src={services4}
                   alt="servives-image"
                 />
                 <img
-                  class="object-center object-cover h-full w-full md:hidden"
+                  className="object-center object-cover h-full w-full md:hidden"
                   src={services4}
                   alt="servives-image"
                 />
-                <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                   Teeth Whitening
                 </button>
-                <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
             </div>
-            <div class="relative group hidden md:flex justify-center items-center h-full w-full mt-4 md:mt-8 lg:hidden">
+            <div className="relative group hidden md:flex justify-center items-center h-full w-full mt-4 md:mt-8 lg:hidden">
               <img
-                class="object-center object-cover h-full w-full hidden md:block"
+                className="object-center object-cover h-full w-full hidden md:block"
                 src={services4}
                 alt="services-image"
               />
               <img
-                class="object-center object-cover h-full w-full sm:hidden"
+                className="object-center object-cover h-full w-full sm:hidden"
                 src={services4}
                 alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
               />
-              <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+              <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                 Teeth Whitening
               </button>
-              <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+              <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
             </div>
           </div>
           <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -353,7 +371,7 @@ export default function Appointment() {
           </div>
         </div>
 
-        <div class="h-60 bg-gray-50 items-center mt-10 p-8">
+        <div className="h-60 bg-gray-50 items-center mt-10 p-8">
           <h1 className="text-3xl font-bold text-center">Our Social Media</h1>
           <div className="flex justify-around items-center space-x-4 mt-20">
             <a
@@ -382,40 +400,40 @@ export default function Appointment() {
             width="900"
             height="450"
             style={{ border: "10%", padding: "10px", justifyItems: "center" }}
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
             title="vhg"
           ></iframe>
         </div>
         {/* Footer */}
         <div>
-          <footer class="relative bg-blueGray-200 pt-8 pb-6">
-            <div class="container mx-auto px-4">
-              <div class="flex flex-wrap text-left lg:text-left">
-                <div class="w-full lg:w-6/12 px-4">
-                  <h4 class="text-3xl fonat-semibold text-blueGray-700">
+          <footer className="relative bg-blueGray-200 pt-8 pb-6">
+            <div className="container mx-auto px-4">
+              <div className="flex flex-wrap text-left lg:text-left">
+                <div className="w-full lg:w-6/12 px-4">
+                  <h4 className="text-3xl fonat-semibold text-blueGray-700">
                     Let's keep in touch!
                   </h4>
-                  <h3 class="text-3xl fonat-semibold text-blueGray-700">
+                  <h3 className="text-3xl fonat-semibold text-blueGray-700">
                     Contact Us!
                   </h3>
                   <br />
-                  <h5 class="text-lg mt-0 mb-2 text-blueGray-600">Call</h5>
+                  <h5 className="text-lg mt-0 mb-2 text-blueGray-600">Call</h5>
                   <p> 9847691402 </p>
                   <p> 014492598</p>
                   <br />
                 </div>
-                <div class="w-full lg:w-6/12 px-4">
-                  <div class="flex flex-wrap items-top mb-6">
-                    <div class="w-full lg:w-4/12 px-4 ml-auto">
-                      <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                <div className="w-full lg:w-6/12 px-4">
+                  <div className="flex flex-wrap items-top mb-6">
+                    <div className="w-full lg:w-4/12 px-4 ml-auto">
+                      <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
                         Useful Links
                       </span>
-                      <ul class="list-unstyled">
+                      <ul className="list-unstyled">
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                             href="/about_us"
                           >
                             About Us
@@ -423,7 +441,7 @@ export default function Appointment() {
                         </li>
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                             href="/services"
                           >
                             Services
@@ -431,30 +449,30 @@ export default function Appointment() {
                         </li>
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="/reviews"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            href="/review"
                           >
                             Reviews
                           </a>
                         </li>
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                            href="/finance-records"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            href="/finance_record"
                           >
                             Finance Records
                           </a>
                         </li>
                       </ul>
                     </div>
-                    <div class="w-full lg:w-4/12 px-4">
-                      <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                    <div className="w-full lg:w-4/12 px-4">
+                      <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
                         Useful Services
                       </span>
-                      <ul class="list-unstyled">
+                      <ul className="list-unstyled">
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                             href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile"
                           >
                             MIT License
@@ -462,7 +480,7 @@ export default function Appointment() {
                         </li>
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                             href="https://creative-tim.com/terms?ref=njs-profile"
                           >
                             Terms &amp; Conditions
@@ -470,7 +488,7 @@ export default function Appointment() {
                         </li>
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                             href="https://creative-tim.com/privacy?ref=njs-profile"
                           >
                             Privacy Policy
@@ -478,7 +496,7 @@ export default function Appointment() {
                         </li>
                         <li>
                           <a
-                            class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                             href="https://creative-tim.com/contact-us?ref=njs-profile"
                           >
                             Contact Us
@@ -489,20 +507,20 @@ export default function Appointment() {
                   </div>
                 </div>
               </div>
-              <hr class="my-6 border-blueGray-300" />
-              <div class="flex flex-wrap items-center md:justify-between justify-center">
-                <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-                  <div class="text-sm text-blueGray-500 font-semibold py-1">
+              <hr className="my-6 border-blueGray-300" />
+              <div className="flex flex-wrap items-center md:justify-between justify-center">
+                <div className="w-full md:w-4/12 px-4 mx-auto text-center">
+                  <div className="text-sm text-blueGray-500 font-semibold py-1">
                     Copyright © <span id="get-current-year">2021</span>
                     <a
                       href="https://www.creative-tim.com/product/notus-js"
-                      class="text-blueGray-500 hover:text-gray-800"
+                      className="text-blueGray-500 hover:text-gray-800"
                       target="_blank"
                     />{" "}
                     ToothCastle by
                     <a
                       href="https://www.creative-tim.com?ref=njs-profile"
-                      class="text-blueGray-500 hover:text-blueGray-800"
+                      className="text-blueGray-500 hover:text-blueGray-800"
                     >
                       Ichhya Koirala
                     </a>
