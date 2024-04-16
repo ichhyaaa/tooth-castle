@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
 module.exports = () => {
-  const connectionParams = process.env.URL;
-  try {
-    mongoose.connect(connectionParams);
-    console.log("Connected to database...");
-  } catch (error) {
-    console.log("Could not connect to database...", error);
-  }
-};
+
+    try {
+        mongoose.connect(process.env.URL).then(() => console.log("Connected to database")).catch((err) => console.log(err));
+    } catch (error) {
+        console.log('Could not connect to database...', error)
+    }
+}

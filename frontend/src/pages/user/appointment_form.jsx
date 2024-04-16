@@ -3,12 +3,12 @@ import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-// import Appointment from "./appointment";
+
 
 const navigation = [
   { name: "About us", href: "/about_us" },
   { name: "Services", href: "/services" },
-  { name: "Reviews", href: "/reviews" },
+  { name: "Reviews", href: "/review" },
   { name: "Financial Records", href: "financial-records" },
 ];
 
@@ -17,6 +17,60 @@ export default function Appointment_Form() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleSubmit = () => {navigate("/")};
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [age, setAge] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [problem, setProblem] = useState("");
+  const [date, setDOB] = useState("");
+  //const [errors, setErrors] = useState({});
+ 
+ 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setErrors({});
+
+  const errors = {}; // Initialize an empty object to store errors
+
+  if (firstName === "") {
+    errors.firstName = "First Name is required"; // Add error message to errors object
+  }
+
+  if (lastName === "") {
+    errors.lastName = "Last Name is required"; // Add error message to errors object
+  }
+
+  if (age === "") {
+    errors.age = "Age is required"; // Add error message to errors object
+  }
+
+  if (phone === "") {
+    errors.phone = "Phone is required"; // Add error message to errors object
+  }
+
+  if (address === "") {
+    errors.address = "Address is required"; // Add error message to errors object
+  }
+
+  if (email === "") {
+    errors.email = "Email is required"; // Add error message to errors object
+  }
+
+  if (date === "") {
+    errors.date = "DOB is required"; // Add error message to errors object
+  }
+
+  if (problem === "") {
+    errors.problem = "Problem is required"; // Add error message to errors object
+  }
+
+
+
+  
+
   return (
     // header
     <>
@@ -157,8 +211,12 @@ export default function Appointment_Form() {
                         required
                         placeholder="First Name*"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
                     </div>
+                    {errors.firstName && (
+                      <p style={{ color: "red" }}>{errors.firstName}</p>
+                    )}
                   </div>
                   <div class="w-full px-3 sm:w-1/2">
                     <div class="mb-5">
@@ -176,8 +234,12 @@ export default function Appointment_Form() {
                         required
                         placeholder="Last Name*"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setLastName(e.target.value)}
                       />
                     </div>
+                    {errors.lastName && (
+                      <p style={{ color: "red" }}>{errors.lastName}</p>
+                    )}
                   </div>
                 </div>
                 <div class="-mx-3 flex flex-wrap">
@@ -197,8 +259,12 @@ export default function Appointment_Form() {
                         required
                         placeholder="Age* (Must be over 18)"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setAge(e.target.value)}
                       />
                     </div>
+                    {errors.age && (
+                      <p style={{ color: "red" }}>{errors.age}</p>
+                    )}
                   </div>
                   <div class="w-full px-3 sm:w-1/2">
                     <div class="mb-5">
@@ -216,8 +282,12 @@ export default function Appointment_Form() {
                         required
                         placeholder="Phone Number*"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
+                    {errors.phone && (
+                      <p style={{ color: "red" }}>{errors.phone}</p>
+                    )}
                   </div>
                 </div>
                 <div class="-mx-3 flex flex-wrap">
@@ -237,8 +307,12 @@ export default function Appointment_Form() {
                         required
                         placeholder="Address*"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
+                    {errors.address && (
+                      <p style={{ color: "red" }}>{errors.address}</p>
+                    )}
                   </div>
                   <div class="w-full px-3 sm:w-1/2">
                     <div class="mb-5">
@@ -256,12 +330,16 @@ export default function Appointment_Form() {
                         required
                         placeholder="Email*"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                       <p>
                         <br /> **Notifications & alerts for appointments sent to
                         this number.
                       </p>
                     </div>
+                    {errors.email && (
+                      <p style={{ color: "red" }}>{errors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -279,8 +357,12 @@ export default function Appointment_Form() {
                         name="date"
                         id="date"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setDOB(e.target.value)}
                       />
                     </div>
+                    {errors.date && (
+                      <p style={{ color: "red" }}>{errors.date}</p>
+                    )}
                   </div>
                 </div>
 
@@ -301,8 +383,12 @@ export default function Appointment_Form() {
                         required
                         placeholder="Share your problem*"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-20 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setProblem(e.target.value)}
                       />
                     </div>
+                    {errors.problem && (
+                      <p style={{ color: "red" }}>{errors.problem}</p>
+                    )}
                   </div>
                 </div>
 

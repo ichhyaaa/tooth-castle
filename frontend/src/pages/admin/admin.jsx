@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
-//import { Dialog } from "@headlessui/react";
-//import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-// import Appointment from "././Appointment";
 
-const navigation = [
-  { name: "About us", href: "/about_us" },
-  { name: "Services", href: "/services" },
-  { name: "Reviews", href: "/reviews" },
-  { name: "Financial Records", href: "financial-records" },
-];
+
+
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -20,9 +13,9 @@ export default function Admin() {
   //     navigate("/");
   //   };
   return (
-    // header
+   
     <>
-      {/* dashboard */}
+      
 
       <div>
         <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
@@ -102,7 +95,7 @@ export default function Admin() {
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/admin"
                         target="_blank"
                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                       >
@@ -121,7 +114,7 @@ export default function Admin() {
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="/doctors"
                         target="_blank"
                         class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                       >

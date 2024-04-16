@@ -1,13 +1,14 @@
-import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import image from "../../Assets/appointment.png";
-import services1  from "../../Assets/services1.png";
-import services2  from "../../Assets/services2.png";
-import services3 from  "../../Assets/services3.png";
-import services4 from  "../../Assets/services4.png";
+import services1 from "../../Assets/services1.png";
+import services2 from "../../Assets/services2.png";
+import services3 from "../../Assets/services3.png";
+import services4 from "../../Assets/services4.png";
+import { useAuth } from "../../auth/AuthContext";
+import React, { useState, useContext } from "react";
 
 import {
   FaFacebookF,
@@ -19,12 +20,14 @@ import {
 const navigation = [
   { name: "About us", href: "/about_us" },
   { name: "Services", href: "/services" },
-  { name: "Reviews", href: "/reviews" },
+  { name: "Reviews", href: "/review" },
   { name: "Financial Records", href: "financial-records" },
 ];
 
 export default function Appointment() {
   const navigate = useNavigate();
+
+  const { user, login, logout } = useAuth();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -166,7 +169,7 @@ export default function Appointment() {
           />
         </div>
       </div>
-      
+
       {/* introduction part */}
       <div class="h-screen bg-gray-50 flex items-center p-5">
         <section class="bg-cover bg-center py-10 w-full">
@@ -225,7 +228,7 @@ export default function Appointment() {
                 <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                   Dental Braces
                 </button>
-                
+
                 <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
 
@@ -261,7 +264,7 @@ export default function Appointment() {
                   alt="services-image"
                 />
                 <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                Teeth Whitening
+                  Teeth Whitening
                 </button>
                 <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
@@ -277,7 +280,7 @@ export default function Appointment() {
                   alt="servives-image"
                 />
                 <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                Teeth Whitening
+                  Teeth Whitening
                 </button>
                 <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
@@ -297,17 +300,16 @@ export default function Appointment() {
                 Teeth Whitening
               </button>
               <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-              
             </div>
           </div>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="/services"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Read More
-              </a>
-            </div>
+            <a
+              href="/services"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Read More
+            </a>
+          </div>
         </div>
       </div>
 
