@@ -83,7 +83,7 @@ export default function Appointment() {
                 </button>
                 <ul className="dropdown-menu">
                   <li>
-                    <a onClick={""} className="dropdown-item" href="/login">
+                    <a onClick={logout} className="dropdown-item" href="">
                       Logout
                     </a>
                   </li>

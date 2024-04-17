@@ -34,8 +34,6 @@ export default function SignUp() {
     e.preventDefault();
     setErrors({});
 
-    // const errors = {}; // Initialize an empty object to store errors
-
     if (firstName === "") {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -78,7 +76,7 @@ export default function SignUp() {
       }));
     }
 
-    if (Object.keys(errors).length === 0) {
+    if (!Object.keys(errors).length === 0) {
       return;
     }
 

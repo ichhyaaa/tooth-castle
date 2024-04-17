@@ -3,6 +3,7 @@ import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import axios from "axios";
 
 const navigation = [
   { name: "About us", href: "/about_us" },
@@ -90,6 +91,35 @@ export default function Appointment_Form() {
     if (Object.keys(errors).length === 0) {
       return;
     }
+
+    axios
+    .post("http://localhost:8000/api/appointment", {
+      first_name: firstName,
+      last_name: lastName,
+      age: age,
+      phone: phone,
+      address: address,
+      email: email,
+      date: date,
+      problem: problem
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        console.log("Appointment submitted successfully:", response.data);
+        navigate("/appointment-success");
+      } else {
+        console.error("Unexpected success response:", response);
+        setErrors("An error occurred. Please try again later.");
+      }
+    })
+    .catch((err) => {
+      if (err.response && err.response.data && err.response.data.error) {
+        setErrors(err.response.data.error);
+      } else {
+        setErrors("An error occurred. Please try again later.");
+      }
+      console.error("Appointment submission failed:", err);
+    });
   };
 
   return (
@@ -405,8 +435,8 @@ export default function Appointment_Form() {
                         onChange={(e) => setProblem(e.target.value)}
                       />
                     </div>
-                    {errors.problem && (
-                      <p style={{ color: "red" }}>{errors.problem}</p>
+                    {errors.problem  && (
+                      <p style={{ color: "red" }}>{errors.problem }</p>
                     )}
                   </div>
                 </div>

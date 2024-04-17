@@ -1,11 +1,12 @@
-import { Button } from "../Components/Button";
+//import { Button } from "../Components/Button";
 import { Dialog } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import logo from "../Assets/logo.png";
-import DentistImage from "../Assets/DentistImage.jpg";
+//import DentistImage from "../Assets/DentistImage.jpg";
 import axios from "axios";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useAuth } from "../auth/AuthContext";
 
 const navigation = [
   { name: "About us", href: "/about_us" },
@@ -17,6 +18,9 @@ const navigation = [
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const { user, login, logout } = useAuth();
 
   console.log(email);
   console.log(password);
@@ -27,14 +31,40 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrors({});
+    console.log("asd");
+
+    if (email === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email is required",
+      }));
+    }
+
+    if (password.length < 8 || password.length > 32) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password must be between 8 and 32 characters",
+      }));
+    }
 
     axios
       .post("http://localhost:8000/api/login", {
         email,
         password,
       })
-      .then(navigate("/appointment"))
-      .catch((err) => console.log(err));
+      .then((response) => {
+        // Login successful
+        console.log("Login successful:", response.data);
+        // Store user information in state or context
+        login(response.data.user);
+        // // Navigate to appointment or any other route
+        navigate("/appointment");
+      })
+      .catch((err) => {
+        // Handle errors
+        console.error("Error logging in:", err);
+      });
   };
 
   const onLogin = () => {
@@ -154,7 +184,12 @@ export const Login = () => {
                 </div>
 
                 <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
-                  <form className="space-y-6" action="#" method="POST">
+                  <form
+                    className="space-y-6"
+                    action="#"
+                    method="POST"
+                    onSubmit={handleSubmit}
+                  >
                     <div>
                       {/* bulletpoint */}
 
@@ -175,6 +210,9 @@ export const Login = () => {
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
+                      {errors.email && (
+                        <p style={{ color: "red" }}>{errors.email}</p>
+                      )}
                     </div>
 
                     <div>
@@ -197,6 +235,9 @@ export const Login = () => {
                           onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>
+                      {errors.password && (
+                        <p style={{ color: "red" }}>{errors.password}</p>
+                      )}
                     </div>
                     <div>
                       <button
