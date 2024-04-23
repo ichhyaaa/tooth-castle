@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useAuth } from "../../auth/AuthContext";
 import axios from "axios";
+import Header from "../../Components/Header";
+import { ToastContainer, toast } from "react-toastify";
 
 const navigation = [
   { name: "About us", href: "/about_us" },
@@ -14,6 +17,7 @@ const navigation = [
 
 export default function Appointment_Form() {
   const navigate = useNavigate();
+  const { user, login, logout } = useAuth();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -24,13 +28,28 @@ export default function Appointment_Form() {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [problem, setProblem] = useState("");
-  const [date, setDOB] = useState("");
+  const [date, setDate] = useState("");
   const [errors, setErrors] = useState({});
+  const [service, setService] = useState([]);
+  const [serviceId, setServiceId] = useState("");
+
+  useEffect(() => {
+    getService();
+  }, []);
+
+  const getService = () => {
+    axios
+      .get("http://localhost:8000/api/service")
+      .then((res) => {
+        console.log(res.data);
+        setService(res.data);
+      })
+      .catch();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
-
     // Initialize an empty object to store errors
     if (firstName === "") {
       setErrors((prevErrors) => ({
@@ -88,45 +107,50 @@ export default function Appointment_Form() {
       }));
     }
 
-    if (Object.keys(errors).length === 0) {
-      return;
-    }
+    // if (Object.keys(errors).length === 0) {
+    //   return;
+    // }
 
     axios
-    .post("http://localhost:8000/api/appointment", {
-      first_name: firstName,
-      last_name: lastName,
-      age: age,
-      phone: phone,
-      address: address,
-      email: email,
-      date: date,
-      problem: problem
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        console.log("Appointment submitted successfully:", response.data);
-        navigate("/appointment-success");
-      } else {
-        console.error("Unexpected success response:", response);
-        setErrors("An error occurred. Please try again later.");
-      }
-    })
-    .catch((err) => {
-      if (err.response && err.response.data && err.response.data.error) {
-        setErrors(err.response.data.error);
-      } else {
-        setErrors("An error occurred. Please try again later.");
-      }
-      console.error("Appointment submission failed:", err);
-    });
+      .post("http://localhost:8000/api/appointment", {
+        first_name: firstName,
+        last_name: lastName,
+        age: age,
+        phone: phone,
+        address: address,
+        email: email,
+        service_id: serviceId,
+        appointment_date: date,
+        problem: problem,
+        user_id: user._id,
+      })
+      .then((response) => {
+        if (response.status === 201) {
+          console.log("Appointment submitted successfully:", response.data);
+          toast.success(response.data.message);
+          navigate("/payment");
+        } else {
+          console.error("Unexpected success response:", response);
+          setErrors("An error occurred. Please try again later.");
+        }
+      })
+      .catch((err) => {
+        if (err.response && err.response.data && err.response.data.error) {
+          setErrors(err.response.data.error);
+        } else {
+          setErrors("An error occurred. Please try again later.");
+        }
+        console.error("Appointment submission failed:", err);
+        toast.error(err.data.message);
+      });
   };
 
   return (
     // header
     <>
       <div className="bg-">
-        <header className="absolute inset-x-0 top-0 z-50">
+        <Header />
+        {/* <header className="absolute inset-x-0 top-0 z-50">
           <nav
             className="flex items-center justify-between p-6 lg:px-8"
             aria-label="Global"
@@ -217,7 +241,7 @@ export default function Appointment_Form() {
               </div>
             </Dialog.Panel>
           </Dialog>
-        </header>
+        </header> */}
 
         {/* form */}
 
@@ -303,7 +327,7 @@ export default function Appointment_Form() {
                         Age
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         name="age"
                         id="age"
                         autoComplete="age"
@@ -406,8 +430,45 @@ export default function Appointment_Form() {
                         name="date"
                         id="date"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        onChange={(e) => setDOB(e.target.value)}
+                        onChange={(e) => setDate(e.target.value)}
                       />
+                    </div>
+                    {errors.date && (
+                      <p style={{ color: "red" }}>{errors.date}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
+                      <label
+                        for="date"
+                        className="mb-2 block text-base font-medium text-[#07074D]"
+                      >
+                        Service
+                      </label>
+                      {/* <input
+                        type="date"
+                        name="date"
+                        id="date"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={(e) => setDOB(e.target.value)}
+                      /> */}
+                      <select
+                        name="service"
+                        id="service"
+                        value={serviceId}
+                        onChange={(e) => setServiceId(e.target.value)}
+                      >
+                        <option value="">Select Service</option>
+                        {service &&
+                          service.map((data) => (
+                            <option key={data._id} value={data._id}>
+                              {data.title}
+                            </option>
+                          ))}
+                      </select>
                     </div>
                     {errors.date && (
                       <p style={{ color: "red" }}>{errors.date}</p>
@@ -435,8 +496,8 @@ export default function Appointment_Form() {
                         onChange={(e) => setProblem(e.target.value)}
                       />
                     </div>
-                    {errors.problem  && (
-                      <p style={{ color: "red" }}>{errors.problem }</p>
+                    {errors.problem && (
+                      <p style={{ color: "red" }}>{errors.problem}</p>
                     )}
                   </div>
                 </div>

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useAuth } from "../auth/AuthContext";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Dialog } from "@headlessui/react";
+import { ToastContainer, toast } from "react-toastify";
 
 const navigation = [
   { name: "About us", href: "/about_us" },
@@ -76,9 +77,10 @@ export default function SignUp() {
       }));
     }
 
-    if (!Object.keys(errors).length === 0) {
-      return;
-    }
+    // if (Object.keys(errors).length !== 0) {
+    //   return;
+    // }
+    console.log(errors);
 
     // If there are no errors, make the API call
 
@@ -92,23 +94,22 @@ export default function SignUp() {
         role: role,
       })
       .then((response) => {
-        // Registration successful
         console.log("Registration successful:", response.data);
-        // Store user information in state or context
         login(response.data.user);
-        // Navigate to appointment or any other route
+        toast.success(response.data.message);
         navigate("/appointment");
       })
       .catch((err) => {
         // Handle error response here
         if (err.response && err.response.data && err.response.data.message) {
           // If the error response contains a message, set it as the error
-          setErrors(err.response.data.message);
+          // setErrors(err.response.data.message);
         } else {
           // Otherwise, set a generic error message
           setErrors("An error occurred. Please try again later.");
         }
         console.error("Registration failed:", err);
+        toast.error(err.response.data.message);
       });
   };
 

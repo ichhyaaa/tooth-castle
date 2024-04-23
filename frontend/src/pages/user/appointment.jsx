@@ -9,7 +9,7 @@ import services3 from "../../Assets/services3.png";
 import services4 from "../../Assets/services4.png";
 import { useAuth } from "../../auth/AuthContext";
 import React, { useState, useContext } from "react";
-import { Button } from "react-bootstrap";
+import Header from "../../Components/Header";
 
 import {
   FaFacebookF,
@@ -34,7 +34,7 @@ export default function Appointment() {
 
   return (
     <div className="bg-">
-      <header className="absolute inset-x-0 top-0 z-50">
+      {/* <header className="absolute inset-x-0 top-0 z-50">
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Global"
@@ -140,7 +140,8 @@ export default function Appointment() {
             </div>
           </Dialog.Panel>
         </Dialog>
-      </header>
+      </header> */}
+      <Header />
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div

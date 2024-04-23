@@ -5,16 +5,26 @@ import Header from "../../Components/Admin/Header";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function Doctors() {
+export default function Appointment() {
   const navigate = useNavigate();
-  const [doctor, setDoctor] = useState([]);
+  const [appointment, setAppointment] = useState([]);
   const [editingRows, setEditingRows] = useState([]);
   const [editingInputValues, setEditingInputValues] = useState([]);
-
+  const [service, setService] = useState([]);
   useEffect(() => {
-    handleGetDoctor();
+    handleGetAppointment();
+    getService();
   }, []);
 
+  const getService = () => {
+    axios
+      .get("http://localhost:8000/api/service")
+      .then((res) => {
+        console.log(res.data);
+        setService(res.data);
+      })
+      .catch();
+  };
   const initialData = {
     key1: "", // Add all keys from your object here
     key2: "",
@@ -30,7 +40,7 @@ export default function Doctors() {
     });
 
     // Add the new data object at the beginning of the array
-    setDoctor([newData, ...doctor]);
+    setAppointment([newData, ...appointment]);
   };
 
   const handleInputValues = (id, value, name) => {
@@ -43,14 +53,15 @@ export default function Doctors() {
     }));
   };
 
-  const handleUpdateDoctor = (id) => {
+  const handleUpdateAppointment = (id) => {
     axios
       .put(
-        "http://localhost:8000/api/admin/doctor/" + id,
+        "http://localhost:8000/api/admin/appointment/" + id,
         editingInputValues[id]
       )
       .then((res) => {
         toast.success(res.data.message);
+        handleGetAppointment();
       })
       .catch((err) => {
         console.log(err);
@@ -60,18 +71,21 @@ export default function Doctors() {
 
   const handleDelete = (id) => {
     console.log("delete");
-    // axios
-    //   .delete("http://localhost:8000/api/admin/doctor/" + id)
-    //   .then()
-    //   .catch();
+    axios
+      .delete("http://localhost:8000/api/admin/appointment/" + id)
+      .then((res) => {
+        toast.success(res.data.message);
+        handleGetAppointment();
+      })
+      .catch();
   };
 
-  const handleGetDoctor = () => {
+  const handleGetAppointment = () => {
     axios
-      .get("http://localhost:8000/api/admin/doctor")
+      .get("http://localhost:8000/api/admin/appointment")
       .then((data) => {
         console.log(data.data);
-        setDoctor(data.data);
+        setAppointment(data.data);
       })
       .catch();
   };
@@ -127,7 +141,7 @@ export default function Doctors() {
                                     class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                                   />
                                   <button class="flex items-center gap-x-2">
-                                    <span>Doctor ID</span>
+                                    <span>Appointment ID</span>
 
                                     <svg
                                       class="h-3"
@@ -162,6 +176,13 @@ export default function Doctors() {
                                 scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                               >
+                                Appointment_Date
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
                                 First Name
                               </th>
 
@@ -176,21 +197,14 @@ export default function Doctors() {
                                 scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                               >
-                                Email
+                                Problems
                               </th>
 
                               <th
                                 scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                               >
-                                Role
-                              </th>
-
-                              <th
-                                scope="col"
-                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                              >
-                                Address
+                                Service ID
                               </th>
 
                               <th
@@ -210,8 +224,8 @@ export default function Doctors() {
                             class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900"
                             id="table-body"
                           >
-                            {doctor &&
-                              doctor.map((data) => {
+                            {appointment &&
+                              appointment.map((data) => {
                                 return (
                                   <tr key={data._id}>
                                     <td class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
@@ -230,8 +244,31 @@ export default function Doctors() {
                                         <div>
                                           <div class="mb-3">
                                             <input
-                                              type="email"
-                                              className="border-2"
+                                              type="number"
+                                              className="border-5 py-1 px-4"
+                                              name="appointment_date"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "appointment_date"
+                                                )
+                                              }
+                                            />
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        data.appointment_date
+                                      )}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                      {editingRows[data._id] ? (
+                                        <div>
+                                          <div class="mb-3">
+                                            <input
+                                              type="text"
+                                              className="border-5 py-1 px-4"
                                               name="first_name"
                                               onChange={(e) =>
                                                 handleInputValues(
@@ -251,40 +288,80 @@ export default function Doctors() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="text"
+                                              className="border-5 py-1 px-4"
+                                              name="last_name"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "last_name"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
-                                        data.last_name
+                                        data.first_name
                                       )}
                                     </td>
 
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="text"
+                                              className="border-5 py-1 px-4"
+                                              name="problem"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "problem"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
-                                        data.email
+                                        data.problem
                                       )}
                                     </td>
 
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <select
+                                            name="service"
+                                            id="service"
+                                            // value={serviceId}
+                                            onChange={(e) =>
+                                              handleInputValues(
+                                                data._id,
+                                                e.target.value,
+                                                "service_id"
+                                              )
+                                            }
+                                          >
+                                            <option value="">
+                                              Select Service
+                                            </option>
+                                            {service &&
+                                              service.map((data) => (
+                                                <option
+                                                  key={data._id}
+                                                  value={data._id}
+                                                >
+                                                  {data.title}
+                                                </option>
+                                              ))}
+                                          </select>
                                         </div>
                                       ) : (
-                                        data.role
-                                      )}
-                                    </td>
-
-                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                      {editingRows[data._id] ? (
-                                        <div>
-                                          <input type="text" />
-                                        </div>
-                                      ) : (
-                                        data.address
+                                        data.service_id
                                       )}
                                     </td>
 
@@ -296,7 +373,9 @@ export default function Doctors() {
                                             editingRows[data._id]
                                               ? () => {
                                                   handleToggleEdit(data._id);
-                                                  handleUpdateDoctor(data._id);
+                                                  handleUpdateAppointment(
+                                                    data._id
+                                                  );
                                                 }
                                               : () => handleToggleEdit(data._id)
                                           }

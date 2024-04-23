@@ -3,7 +3,8 @@ const { User } = require("../../models/user");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 
-router.post("/:role", async (req, res) => {
+router.post("/", async (req, res) => {
+    
   //   try {
   //     const { error } = validate(req.body);
   //     if (error)
@@ -22,9 +23,8 @@ router.post("/:role", async (req, res) => {
   //   } catch (error) {
   //     return res.status(500).send({ message: "Internal Server Error", error });
   //   }
-  const role = req.params.role;
 
-  const user = await User.findOne({ email: req.body.email, role: role });
+  const user = await User.findOne({ email: req.body.email, role: "admin" });
 
   if (!user)
     return res.status(401).send({ message: "Invalid Email or Password" });

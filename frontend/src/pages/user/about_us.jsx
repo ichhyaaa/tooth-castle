@@ -13,6 +13,7 @@ import doctor7 from "../../Assets/doctor7.png";
 // import doctor8 from "../Assets/doctor8.png";
 // import doctor9 from "../Assets/doctor9.png";
 // import doctor10 from "../Assets/doctor10.png";
+import Header from "../../Components/Header";
 
 import {
   FaFacebookF,
@@ -37,7 +38,7 @@ export default function About_us() {
 
   return (
     <div className="bg-">
-      <header className="absolute inset-x-0 top-0 z-50">
+      {/* <header className="absolute inset-x-0 top-0 z-50">
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Global"
@@ -128,7 +129,8 @@ export default function About_us() {
             </div>
           </Dialog.Panel>
         </Dialog>
-      </header>
+      </header> */}
+      <Header />
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div

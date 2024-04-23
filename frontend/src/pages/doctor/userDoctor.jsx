@@ -5,14 +5,14 @@ import Header from "../../Components/Admin/Header";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function Doctors() {
+export default function UserDoctor() {
   const navigate = useNavigate();
-  const [doctor, setDoctor] = useState([]);
+  const [appointment, setAppointment] = useState([]);
   const [editingRows, setEditingRows] = useState([]);
   const [editingInputValues, setEditingInputValues] = useState([]);
 
   useEffect(() => {
-    handleGetDoctor();
+    handleGetAppointment();
   }, []);
 
   const initialData = {
@@ -30,7 +30,7 @@ export default function Doctors() {
     });
 
     // Add the new data object at the beginning of the array
-    setDoctor([newData, ...doctor]);
+    setAppointment([newData, ...appointment]);
   };
 
   const handleInputValues = (id, value, name) => {
@@ -43,10 +43,10 @@ export default function Doctors() {
     }));
   };
 
-  const handleUpdateDoctor = (id) => {
+  const handleUpdateAppointment = (id) => {
     axios
       .put(
-        "http://localhost:8000/api/admin/doctor/" + id,
+        "http://localhost:8000/api/admin/appointment/" + id,
         editingInputValues[id]
       )
       .then((res) => {
@@ -61,17 +61,17 @@ export default function Doctors() {
   const handleDelete = (id) => {
     console.log("delete");
     // axios
-    //   .delete("http://localhost:8000/api/admin/doctor/" + id)
+    //   .delete("http://localhost:8000/api/admin/appointment/" + id)
     //   .then()
     //   .catch();
   };
 
-  const handleGetDoctor = () => {
+  const handleGetAppointment = () => {
     axios
-      .get("http://localhost:8000/api/admin/doctor")
+      .get("http://localhost:8000/api/admin/appointment")
       .then((data) => {
         console.log(data.data);
-        setDoctor(data.data);
+        setAppointment(data.data);
       })
       .catch();
   };
@@ -127,7 +127,7 @@ export default function Doctors() {
                                     class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                                   />
                                   <button class="flex items-center gap-x-2">
-                                    <span>Doctor ID</span>
+                                    <span>Appointment ID</span>
 
                                     <svg
                                       class="h-3"
@@ -162,6 +162,13 @@ export default function Doctors() {
                                 scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                               >
+                                Appointment_Date
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
                                 First Name
                               </th>
 
@@ -176,21 +183,21 @@ export default function Doctors() {
                                 scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                               >
-                                Email
+                                Problems
                               </th>
 
                               <th
                                 scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                               >
-                                Role
+                                Service ID
                               </th>
 
                               <th
                                 scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                               >
-                                Address
+                                Doctor ID
                               </th>
 
                               <th
@@ -210,8 +217,8 @@ export default function Doctors() {
                             class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900"
                             id="table-body"
                           >
-                            {doctor &&
-                              doctor.map((data) => {
+                            {appointment &&
+                              appointment.map((data) => {
                                 return (
                                   <tr key={data._id}>
                                     <td class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
@@ -223,6 +230,10 @@ export default function Doctors() {
 
                                         <span>{data._id}</span>
                                       </div>
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                      {data.date}
                                     </td>
 
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -264,7 +275,7 @@ export default function Doctors() {
                                           <input type="text" />
                                         </div>
                                       ) : (
-                                        data.email
+                                        data.problem
                                       )}
                                     </td>
 
@@ -274,7 +285,7 @@ export default function Doctors() {
                                           <input type="text" />
                                         </div>
                                       ) : (
-                                        data.role
+                                        data.service_id
                                       )}
                                     </td>
 
@@ -284,7 +295,7 @@ export default function Doctors() {
                                           <input type="text" />
                                         </div>
                                       ) : (
-                                        data.address
+                                        data.doctor_id
                                       )}
                                     </td>
 
@@ -296,7 +307,9 @@ export default function Doctors() {
                                             editingRows[data._id]
                                               ? () => {
                                                   handleToggleEdit(data._id);
-                                                  handleUpdateDoctor(data._id);
+                                                  handleUpdateAppointment(
+                                                    data._id
+                                                  );
                                                 }
                                               : () => handleToggleEdit(data._id)
                                           }

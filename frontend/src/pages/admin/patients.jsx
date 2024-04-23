@@ -1,243 +1,98 @@
-import React, { useState } from "react";
-import logo from "../../Assets/logo.png";
+import React, { useState, useEffect } from "react";
+import SideBar from "../../Components/Admin/SideBar";
 import { useNavigate } from "react-router-dom";
+import Header from "../../Components/Admin/Header";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
-export default function Patients() {
+
+export default function User() {
   const navigate = useNavigate();
+  const [user, setUser] = useState([]);
+  const [editingRows, setEditingRows] = useState([]);
+  const [editingInputValues, setEditingInputValues] = useState([]);
+
+  useEffect(() => {
+    handleGetUser();
+  }, []);
+
+  const initialData = {
+    key1: "", // Add all keys from your object here
+    key2: "",
+    key3: "",
+    // Add more keys as needed
+  };
+
+  const handleCreate = () => {
+    // Create a new object with empty values
+    const newData = {};
+    Object.keys(initialData).forEach((key) => {
+      newData[key] = "";
+    });
+
+    // Add the new data object at the beginning of the array
+    setUser([newData, ...user]);
+  };
+
+  const handleInputValues = (id, value, name) => {
+    setEditingInputValues((prevEditingRows) => ({
+      ...prevEditingRows,
+      [id]: {
+        ...prevEditingRows[id],
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleUpdateUser = (id) => {
+    axios
+      .put(
+        "http://localhost:8000/api/admin/user/" + id,
+        editingInputValues[id]
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.message);
+      });
+  };
+
+  const handleDelete = (id) => {
+    console.log("delete");
+    // axios
+    //   .delete("http://localhost:8000/api/admin/user/" + id)
+    //   .then()
+    //   .catch();
+  };
+
+  const handleGetUser = () => {
+    axios
+      .get("http://localhost:8000/api/admin/user")
+      .then((data) => {
+        console.log(data.data);
+        setUser(data.data);
+      })
+      .catch();
+  };
+
+  const handleToggleEdit = (id) => {
+    setEditingRows((prevEditingRows) => ({
+      ...prevEditingRows,
+      [id]: !prevEditingRows[id],
+    }));
+
+    console.log(editingRows);
+  };
 
   return (
     <>
       <div>
-        <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
-          <div className="px-3 py-3 lg:px-5 lg:pl-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center justify-start">
-                <button
-                  id="toggleSidebarMobile"
-                  aria-expanded="true"
-                  aria-controls="sidebar"
-                  className="lg:hidden mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded"
-                >
-                  <svg
-                    id="toggleSidebarMobileHamburger"
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <svg
-                    id="toggleSidebarMobileClose"
-                    className="w-6 h-6 hidden"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </button>
-                <a
-                  href="#"
-                  className="text-xl font-bold flex items-center lg:ml-2.5"
-                >
-                  <img src={logo} className="h-6 mr-2" alt="Toth Castle Logo" />
-                </a>
-              </div>
-              <div className="flex items-center"></div>
-            </div>
-          </div>
-        </nav>
+        <Header />
         <div className="flex overflow-hidden bg-white pt-16">
-          <aside
-            id="sidebar"
-            className="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
-            aria-label="Sidebar"
-          >
-            <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
-              <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                <div className="flex-1 px-3 bg-white divide-y space-y-1">
-                  <ul className="space-y-2 pb-2">
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
-                      >
-                        <svg
-                          className="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                          <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                        </svg>
-                        <span className="ml-3">Dashboard</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        target="_blank"
-                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
-                      >
-                        <svg
-                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                        </svg>
-                        <span className="ml-3 flex-1 whitespace-nowrap">
-                          Appointment
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        target="_blank"
-                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
-                      >
-                        <svg
-                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className="ml-3 flex-1 whitespace-nowrap">
-                          Doctors
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
-                      >
-                        <svg
-                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className="ml-3 flex-1 whitespace-nowrap">
-                          Patients
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
-                      >
-                        <svg
-                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className="ml-3 flex-1 whitespace-nowrap">
-                          Payments
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="space-y-2 pt-2">
-                    <a
-                      href="#"
-                      target="_blank"
-                      className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
-                    >
-                      <svg
-                        className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                        <path
-                          fill-rule="evenodd"
-                          d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      <span className="ml-3">Report</span>
-                    </a>
+          <SideBar />
 
-                    <a
-                      href="#"
-                      target="_blank"
-                      className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
-                    >
-                      <svg
-                        className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      <span className="ml-3">Help</span>
-                    </a>
-                    <li>
-                      <a
-                        href="#"
-                        className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
-                      >
-                        <svg
-                          className="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className="ml-3 flex-1 whitespace-nowrap">
-                          Sign Out
-                        </span>
-                      </a>
-                    </li>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </aside>
           <div
             className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
             id="sidebarBackdrop"
@@ -247,144 +102,322 @@ export default function Patients() {
             className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
           >
             <main>
-              <table className="border-collapse w-full">
-                <thead>
-                  <tr>
-                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                      Company name
-                    </th>
-                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                      Country
-                    </th>
-                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                      Status
-                    </th>
-                    <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Company name
-                      </span>
-                      KnobHome
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Country
-                      </span>
-                      German
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Status
-                      </span>
-                      <span className="rounded bg-red-400 py-1 px-3 text-xs font-bold">
-                        deleted
-                      </span>
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Actions
-                      </span>
-                      <a
-                        href="#"
-                        className="text-blue-400 hover:text-blue-600 underline"
-                      >
-                        Edit
-                      </a>
-                      <a
-                        href="#"
-                        className="text-blue-400 hover:text-blue-600 underline pl-6"
-                      >
-                        Remove
-                      </a>
-                    </td>
-                  </tr>
-                  <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Company name
-                      </span>
-                      Squary
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Country
-                      </span>
-                      Schweden
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Status
-                      </span>
-                      <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold">
-                        active
-                      </span>
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Actions
-                      </span>
-                      <a
-                        href="#"
-                        className="text-blue-400 hover:text-blue-600 underline"
-                      >
-                        Edit
-                      </a>
-                      <a
-                        href="#"
-                        className="text-blue-400 hover:text-blue-600 underline pl-6"
-                      >
-                        Remove
-                      </a>
-                    </td>
-                  </tr>
-                  <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Company name
-                      </span>
-                      ghome
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Country
-                      </span>
-                      Switzerland
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Status
-                      </span>
-                      <span className="rounded bg-yellow-400 py-1 px-3 text-xs font-bold">
-                        inactive
-                      </span>
-                    </td>
-                    <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                      <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">
-                        Actions
-                      </span>
-                      <a
-                        href="#"
-                        className="text-blue-400 hover:text-blue-600 underline"
-                      >
-                        Edit
-                      </a>
-                      <a
-                        href="#"
-                        className="text-blue-400 hover:text-blue-600 underline pl-6"
-                      >
-                        Remove
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="pt-6 px-4 mb-6 flex justify-end">
+                <button
+                  onClick={() => handleCreate}
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                >
+                  Create
+                </button>
+              </div>
+              <section class="container px-4 mx-auto">
+                <div class="flex flex-col">
+                  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                      <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                          <thead class="bg-gray-50 dark:bg-gray-800">
+                            <tr>
+                              <th
+                                scope="col"
+                                class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
+                                <div class="flex items-center gap-x-3">
+                                  <input
+                                    type="checkbox"
+                                    class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                                  />
+                                  <button class="flex items-center gap-x-2">
+                                    <span>User ID</span>
+
+                                    <svg
+                                      class="h-3"
+                                      viewBox="0 0 10 11"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z"
+                                        fill="currentColor"
+                                        stroke="currentColor"
+                                        stroke-width="0.1"
+                                      />
+                                      <path
+                                        d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z"
+                                        fill="currentColor"
+                                        stroke="currentColor"
+                                        stroke-width="0.1"
+                                      />
+                                      <path
+                                        d="M8.45558 7.25664V7.40664H8.60558H9.66065C9.72481 7.40664 9.74667 7.42274 9.75141 7.42691C9.75148 7.42808 9.75146 7.42993 9.75116 7.43262C9.75001 7.44265 9.74458 7.46304 9.72525 7.49314C9.72522 7.4932 9.72518 7.49326 9.72514 7.49332L7.86959 10.3529L7.86924 10.3534C7.83227 10.4109 7.79863 10.418 7.78568 10.418C7.77272 10.418 7.73908 10.4109 7.70211 10.3534L7.70177 10.3529L5.84621 7.49332C5.84617 7.49325 5.84612 7.49318 5.84608 7.49311C5.82677 7.46302 5.82135 7.44264 5.8202 7.43262C5.81989 7.42993 5.81987 7.42808 5.81994 7.42691C5.82469 7.42274 5.84655 7.40664 5.91071 7.40664H6.96578H7.11578V7.25664V0.633865C7.11578 0.42434 7.29014 0.249976 7.49967 0.249976H8.07169C8.28121 0.249976 8.45558 0.42434 8.45558 0.633865V7.25664Z"
+                                        fill="currentColor"
+                                        stroke="currentColor"
+                                        stroke-width="0.3"
+                                      />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
+                                First Name
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
+                                Last Name
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
+                                Email
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
+                                Role
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
+                                Address
+                              </th>
+
+                              <th
+                                scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                              >
+                                Action
+                              </th>
+
+                              <th scope="col" class="relative py-3.5 px-4">
+                                <span class="sr-only">Actions</span>
+                              </th>
+                            </tr>
+                          </thead>
+
+                          <tbody
+                            class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900"
+                            id="table-body"
+                          >
+                            {user &&
+                              user.map((data) => {
+                                return (
+                                  <tr key={data._id}>
+                                    <td class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                                      <div class="inline-flex items-center gap-x-3">
+                                        <input
+                                          type="checkbox"
+                                          class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                                        />
+
+                                        <span>{data._id}</span>
+                                      </div>
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                      {editingRows[data._id] ? (
+                                        <div>
+                                          <div class="mb-3">
+                                            <input
+                                              type="email"
+                                              className="border-2"
+                                              name="first_name"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "first_name"
+                                                )
+                                              }
+                                            />
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        data.first_name
+                                      )}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                      {editingRows[data._id] ? (
+                                        <div>
+                                          <input type="text" />
+                                        </div>
+                                      ) : (
+                                        data.last_name
+                                      )}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                      {editingRows[data._id] ? (
+                                        <div>
+                                          <input type="text" />
+                                        </div>
+                                      ) : (
+                                        data.email
+                                      )}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                      {editingRows[data._id] ? (
+                                        <div>
+                                          <input type="text" />
+                                        </div>
+                                      ) : (
+                                        data.role
+                                      )}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                      {editingRows[data._id] ? (
+                                        <div>
+                                          <input type="text" />
+                                        </div>
+                                      ) : (
+                                        data.address
+                                      )}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap p-3">
+                                      <div>
+                                        <button
+                                          className="p-3"
+                                          onClick={
+                                            editingRows[data._id]
+                                              ? () => {
+                                                  handleToggleEdit(data._id);
+                                                  handleUpdateUser(data._id);
+                                                }
+                                              : () => handleToggleEdit(data._id)
+                                          }
+                                        >
+                                          {editingRows[data._id]
+                                            ? "Save"
+                                            : "Edit"}
+                                        </button>
+                                        <button
+                                          onClick={() => handleDelete(data._id)}
+                                        >
+                                          {" "}
+                                          Delete{" "}
+                                        </button>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between mt-6">
+                  <a
+                    href="#"
+                    class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-5 h-5 rtl:-scale-x-100"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+                      />
+                    </svg>
+
+                    <span>previous</span>
+                  </a>
+
+                  <div class="items-center hidden md:flex gap-x-3">
+                    <a
+                      href="#"
+                      class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60"
+                    >
+                      1
+                    </a>
+                    <a
+                      href="#"
+                      class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                    >
+                      2
+                    </a>
+                    <a
+                      href="#"
+                      class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                    >
+                      3
+                    </a>
+                    <a
+                      href="#"
+                      class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                    >
+                      ...
+                    </a>
+                    <a
+                      href="#"
+                      class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                    >
+                      12
+                    </a>
+                    <a
+                      href="#"
+                      class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                    >
+                      13
+                    </a>
+                    <a
+                      href="#"
+                      class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                    >
+                      14
+                    </a>
+                  </div>
+
+                  <a
+                    href="#"
+                    class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+                  >
+                    <span>Next</span>
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-5 h-5 rtl:-scale-x-100"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </section>
             </main>
+
+          {/* Footer */}
             <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
               <ul className="flex items-center flex-wrap mb-6 md:mb-0">
                 <li>
@@ -443,20 +476,7 @@ export default function Patients() {
                     />
                   </svg>
                 </a>
-                <a href="#" className="text-gray-500 hover:text-gray-900">
-                  <svg
-                    className="h-5 w-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </a>
+                
                 <a href="#" className="text-gray-500 hover:text-gray-900">
                   <svg
                     className="h-5 w-5"
@@ -498,16 +518,16 @@ export default function Patients() {
               </div>
             </footer>
             <p className="text-center text-sm text-gray-500 my-10">
-              &copy; 2019-2021{" "}
+              &copy; 2024{" "}
               <a href="#" className="hover:underline" target="_blank">
-                Themesberg
+                Tooth Castle
               </a>
               . All rights reserved.
             </p>
           </div>
         </div>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
-        <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+       
       </div>
     </>
   );

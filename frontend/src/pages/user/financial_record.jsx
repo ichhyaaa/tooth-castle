@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import axios from "axios";
+import Header from "../../Components/Header";
+import { useAuth } from "../../auth/AuthContext";
 // import Appointment from "./appointment";
 
 const navigation = [
@@ -14,109 +15,266 @@ const navigation = [
 
 export default function Financial_record() {
   const navigate = useNavigate();
+  const { user, login, logout } = useAuth();
+  const [appointment, setAppointment] = useState([]);
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const handleSubmit = () => {navigate("/")};
+  useEffect(() => {
+    handleGetRecords();
+  }, [user]);
+
+  const handleGetRecords = async () => {
+    try {
+      axios
+        .get("http://localhost:8000/api/financeRecord/" + user._id)
+        .then((data) => {
+          console.log(data.data);
+          setAppointment(data.data.appointment);
+          console.log(appointment);
+        })
+        .catch();
+    } catch (error) {
+      console.error("Error fetching records:", error);
+    }
+  };
+
   return (
     // header
     <>
       <div className="bg-">
-        <header className="absolute inset-x-0 top-0 z-50">
-          <nav
-            className="flex items-center justify-between p-6 lg:px-8"
-            aria-label="Global"
-          >
-            <div
-              className="flex lg:flex-1"
-              onClick={() => navigate("/appointment")}
-            >
-              <a href="" className="-m-1.5 p-1.5">
-                <span className="sr-only">Tooth Castle</span>
-                <img className="h-8 w-auto" src={logo} alt="" />
-              </a>
-            </div>
-            <div className="flex lg:hidden">
-              <button
-                type="button"
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <span className="sr-only">Open main menu</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="hidden lg:flex lg:gap-x-12">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a
-                href="/login"
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Log In <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </nav>
-          <Dialog
-            as="div"
-            className="lg:hidden"
-            open={mobileMenuOpen}
-            onClose={setMobileMenuOpen}
-          >
-            <div className="fixed inset-0 z-50" />
-            <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-              <div className="flex items-center justify-between">
-                <a href="#" className="-m-1.5 p-1.5">
-                  <span className="sr-only">Dental Clinic</span>
-                  <img className="h-8 w-auto" src={logo} alt="" />
-                </a>
-                <button
-                  type="button"
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
-              <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-500/10">
-                  <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+        <Header />
+
+        <main>
+          <div className="pt-6 px-4 mb-6 flex justify-end"></div>
+          <section class="container px-4 mx-auto">
+            <div class="flex flex-col">
+              <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                  <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                      <thead class="bg-gray-50 dark:bg-gray-800">
+                        <tr>
+                          <th
+                            scope="col"
+                            class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          >
+                            <div class="flex items-center gap-x-3">
+                              <input
+                                type="checkbox"
+                                class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                              />
+                              <button class="flex items-center gap-x-2">
+                                <span>User ID</span>
+
+                                <svg
+                                  class="h-3"
+                                  viewBox="0 0 10 11"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    stroke-width="0.1"
+                                  />
+                                  <path
+                                    d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    stroke-width="0.1"
+                                  />
+                                  <path
+                                    d="M8.45558 7.25664V7.40664H8.60558H9.66065C9.72481 7.40664 9.74667 7.42274 9.75141 7.42691C9.75148 7.42808 9.75146 7.42993 9.75116 7.43262C9.75001 7.44265 9.74458 7.46304 9.72525 7.49314C9.72522 7.4932 9.72518 7.49326 9.72514 7.49332L7.86959 10.3529L7.86924 10.3534C7.83227 10.4109 7.79863 10.418 7.78568 10.418C7.77272 10.418 7.73908 10.4109 7.70211 10.3534L7.70177 10.3529L5.84621 7.49332C5.84617 7.49325 5.84612 7.49318 5.84608 7.49311C5.82677 7.46302 5.82135 7.44264 5.8202 7.43262C5.81989 7.42993 5.81987 7.42808 5.81994 7.42691C5.82469 7.42274 5.84655 7.40664 5.91071 7.40664H6.96578H7.11578V7.25664V0.633865C7.11578 0.42434 7.29014 0.249976 7.49967 0.249976H8.07169C8.28121 0.249976 8.45558 0.42434 8.45558 0.633865V7.25664Z"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    stroke-width="0.3"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </th>
+
+                          <th
+                            scope="col"
+                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          >
+                            First Name
+                          </th>
+
+                          <th
+                            scope="col"
+                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          >
+                            Last Name
+                          </th>
+
+                          <th
+                            scope="col"
+                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          >
+                            Service Use
+                          </th>
+
+                          <th
+                            scope="col"
+                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          >
+                            Problems
+                          </th>
+
+                          <th
+                            scope="col"
+                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          >
+                            Payment
+                          </th>
+
+                          <th scope="col" class="relative py-3.5 px-4">
+                            <span class="sr-only">Actions</span>
+                          </th>
+                        </tr>
+                      </thead>
+
+                      <tbody
+                        class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900"
+                        id="table-body"
                       >
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
-                  <div className="py-6" onClick={() => navigate("/login")}>
-                    <a
-                      href="/login"
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      Log In
-                    </a>
+                        {appointment &&
+                          appointment.map((data) => {
+                            return (
+                              <tr>
+                                <td class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                                  <div class="inline-flex items-center gap-x-3">
+                                    <input
+                                      type="checkbox"
+                                      class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                                    />
+
+                                    <span>{data._id}</span>
+                                  </div>
+                                </td>
+
+                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                  {data.first_name}
+                                </td>
+
+                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                  {data.last_name}
+                                </td>
+
+                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                  {data.price.title}
+                                </td>
+
+                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                  {data.problem}
+                                </td>
+
+                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                  {data.price.price}
+                                </td>
+                              </tr>
+                            );
+                          })}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-            </Dialog.Panel>
-          </Dialog>
-        </header>
+            </div>
 
-        {/* form */}
+            <div class="flex items-center justify-between mt-6">
+              <a
+                href="#"
+                class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5 rtl:-scale-x-100"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+                  />
+                </svg>
 
-        
+                <span>previous</span>
+              </a>
+
+              <div class="items-center hidden md:flex gap-x-3">
+                <a
+                  href="#"
+                  class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60"
+                >
+                  1
+                </a>
+                <a
+                  href="#"
+                  class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                >
+                  2
+                </a>
+                <a
+                  href="#"
+                  class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                >
+                  3
+                </a>
+                <a
+                  href="#"
+                  class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                >
+                  ...
+                </a>
+                <a
+                  href="#"
+                  class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                >
+                  12
+                </a>
+                <a
+                  href="#"
+                  class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                >
+                  13
+                </a>
+                <a
+                  href="#"
+                  class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+                >
+                  14
+                </a>
+              </div>
+
+              <a
+                href="#"
+                class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+              >
+                <span>Next</span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5 rtl:-scale-x-100"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </section>
+        </main>
       </div>
     </>
   );

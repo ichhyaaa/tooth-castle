@@ -1,16 +1,12 @@
 const router = require("express").Router();
-const { User, validate } = require("../../models/user");
+const { Appointment, validate } = require("../models/appointment");
 const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
-  
+  const body = req.body;
+  console.log(body);
+  await new Appointment({ ...body }).save();
+  res.status(201).send({ message: "Appointment created successfully" });
 });
-const validate = (data) => {
-  const schema = Joi.object({
-    email: Joi.string().email().required().label("Email"),
-    password: Joi.string().required().label("Password"),
-  });
-  return schema.validate(data);
-};
 
 module.exports = router;

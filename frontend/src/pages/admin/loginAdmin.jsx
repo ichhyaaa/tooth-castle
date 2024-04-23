@@ -2,11 +2,11 @@
 import { Dialog } from "@headlessui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState } from "react";
-import logo from "../Assets/logo.png";
+import logo from "../../Assets/logo.png";
 //import DentistImage from "../Assets/DentistImage.jpg";
 import axios from "axios";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useAuth } from "../auth/AuthContext";
+import { useAuth } from "../../auth/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 
 const navigation = [
@@ -16,14 +16,14 @@ const navigation = [
   { name: "Financial Records", href: "financial_record" },
 ];
 
-export const Login = () => {
+export const LoginAdmin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   const { user, login, logout } = useAuth();
   const location = useLocation();
-  let role = location.state.role;
+  // let role = location.state.role;
 
   const navigate = useNavigate();
 
@@ -48,24 +48,24 @@ export const Login = () => {
     }
 
     axios
-      .post("http://localhost:8000/api/login/" + role, {
+      .post("http://localhost:8000/api/admin/login", {
         email,
         password,
       })
       .then((response) => {
-        console.log("Login successful:", response.data);
-        login(response.data.user);
-        toast.success(response.data.message);
-        navigate("/appointment");
+        console.log("Login successful:", response);
+        // login(response.data.user);
+        // toast.success(response.data.message);
+        navigate("/admin/Appointment");
       })
       .catch((err) => {
         // Handle errors
         console.error("Error logging in:", err);
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          serverError: err.response.data.message,
-        }));
-        toast.error(err.response.data.message);
+        // setErrors((prevErrors) => ({
+        //   ...prevErrors,
+        //   serverError: err.response.data.message,
+        // }));
+        // toast.error(err.response.data.message);
       });
   };
 
@@ -176,9 +176,9 @@ export const Login = () => {
                     src={logo}
                     alt="Dental Clinic"
                   />
-                  <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                  {/* <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                     Login as {role}
-                  </h2>
+                  </h2> */}
                 </div>
 
                 <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
