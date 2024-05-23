@@ -251,7 +251,20 @@ export default function Doctors() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="email"
+                                              className="border-2"
+                                              name="last_name"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "last_name"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.last_name
@@ -261,7 +274,20 @@ export default function Doctors() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="email"
+                                              className="border-2"
+                                              name="email"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "email"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.email
@@ -271,7 +297,20 @@ export default function Doctors() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="role"
+                                              className="border-2"
+                                              name="email"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "role"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.role
@@ -281,7 +320,20 @@ export default function Doctors() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="role"
+                                              className="border-2"
+                                              name="address"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "address"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.address

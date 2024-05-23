@@ -22,14 +22,12 @@ router.get("/:id", async (req, res) => {
     const prices = await Service.find({
       _id: { $in: serviceIds },
     });
-    // console.log(appointment);
-    // Create a mapping of service IDs to their corresponding prices
+
     const priceMap = {};
     prices.forEach((price) => {
       priceMap[price._id.toString()] = price;
     });
 
-    // Map the appointments with their corresponding prices
     const appointmentsWithPrices = appointment.map((appointment) => ({
       ...appointment.toObject(),
       price: priceMap[appointment.service_id.toString()], // Assuming price is a field in the Service schema

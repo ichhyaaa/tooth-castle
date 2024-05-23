@@ -55,7 +55,7 @@ export const LoginAdmin = () => {
       .then((response) => {
         console.log("Login successful:", response);
         // login(response.data.user);
-        // toast.success(response.data.message);
+        toast.success(response.data.message);
         navigate("/admin/Appointment");
       })
       .catch((err) => {

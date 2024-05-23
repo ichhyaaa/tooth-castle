@@ -5,7 +5,6 @@ import Header from "../../Components/Admin/Header";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-
 export default function User() {
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
@@ -46,10 +45,7 @@ export default function User() {
 
   const handleUpdateUser = (id) => {
     axios
-      .put(
-        "http://localhost:8000/api/admin/user/" + id,
-        editingInputValues[id]
-      )
+      .put("http://localhost:8000/api/admin/user/" + id, editingInputValues[id])
       .then((res) => {
         toast.success(res.data.message);
       })
@@ -252,7 +248,20 @@ export default function User() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="text"
+                                              className="border-2"
+                                              name="last_name"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "last_name"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.last_name
@@ -262,7 +271,20 @@ export default function User() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="text"
+                                              className="border-2"
+                                              name="email"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "email"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.email
@@ -272,7 +294,20 @@ export default function User() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="text"
+                                              className="border-2"
+                                              name="role"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "role"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.role
@@ -282,7 +317,20 @@ export default function User() {
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                       {editingRows[data._id] ? (
                                         <div>
-                                          <input type="text" />
+                                          <div class="mb-3">
+                                            <input
+                                              type="text"
+                                              className="border-2"
+                                              name="address"
+                                              onChange={(e) =>
+                                                handleInputValues(
+                                                  data._id,
+                                                  e.target.value,
+                                                  "address"
+                                                )
+                                              }
+                                            />
+                                          </div>
                                         </div>
                                       ) : (
                                         data.address
@@ -417,7 +465,7 @@ export default function User() {
               </section>
             </main>
 
-          {/* Footer */}
+            {/* Footer */}
             <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
               <ul className="flex items-center flex-wrap mb-6 md:mb-0">
                 <li>
@@ -476,7 +524,7 @@ export default function User() {
                     />
                   </svg>
                 </a>
-                
+
                 <a href="#" className="text-gray-500 hover:text-gray-900">
                   <svg
                     className="h-5 w-5"
@@ -527,7 +575,6 @@ export default function User() {
           </div>
         </div>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
-       
       </div>
     </>
   );

@@ -78,7 +78,6 @@ export default function Review() {
     <>
       <div className="bg-">
         <Header />
-        {/* <StarRating /> */}
         {/* form */}
       </div>
 

@@ -154,7 +154,7 @@ export default function SignUp() {
               </div>
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a
-                  href="/login"
+                  href="/main"
                   className="text-sm font-semibold leading-6 text-gray-900"
                 >
                   Log In <span aria-hidden="true">&rarr;</span>

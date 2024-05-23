@@ -56,7 +56,12 @@ export const Login = () => {
         console.log("Login successful:", response.data);
         login(response.data.user);
         toast.success(response.data.message);
-        navigate("/appointment");
+        if (role === "user") {
+          navigate("/appointment");
+        }
+        if (role === "doctor") {
+          navigate("/doctor/userDoctor");
+        }
       })
       .catch((err) => {
         // Handle errors

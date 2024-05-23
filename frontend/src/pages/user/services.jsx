@@ -4,8 +4,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import services1 from "../../Assets/services1.png";
-import services2 from "../../Assets/services2.png";
-import services3 from "../../Assets/services3.png";
 import services4 from "../../Assets/services4.png";
 import services5 from "../../Assets/services5.png";
 import services6 from "../../Assets/services6.png";
@@ -27,98 +25,6 @@ export default function Services() {
 
   return (
     <div className="bg-">
-      {/* <header className="absolute inset-x-0 top-0 z-50">
-        <nav
-          className="flex items-center justify-between p-6 lg:px-8"
-          aria-label="Global"
-        >
-          <div
-            className="flex lg:flex-1"
-            onClick={() => navigate("/appointment")}
-          >
-            <a href="" className="-m-1.5 p-1.5">
-              <span className="sr-only">Tooth Castle</span>
-              <img className="h-8 w-auto" src={logo} alt="" />
-            </a>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log In <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </nav>
-        <Dialog
-          as="div"
-          className="lg:hidden"
-          open={mobileMenuOpen}
-          onClose={setMobileMenuOpen}
-        >
-          <div className="fixed inset-0 z-50" />
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <a href="/appointment" className="-m-1.5 p-1.5">
-                <span className="sr-only">Dental Clinic</span>
-                <img className="h-8 w-auto" src={logo} alt="" />
-              </a>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-                <div className="py-6" onClick={() => navigate("/login")}>
-                  <a
-                    href="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Log In
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Dialog.Panel>
-        </Dialog>
-      </header> */}
       <Header />
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -184,31 +90,37 @@ export default function Services() {
             <div>
               <div className="pr-12">
                 <p className="peer mb-6 text-gray-400">
-                  The profession of orthodontics focuses on correcting
-                  malpositioned teeth and jaws. For example, you should have
-                  orthodontic treatment if your teeth are misaligned. Large
-                  spaces between teeth, overbites, underbites, crossbite,
-                  misaligned midlines, and open bites are among the other
-                  issues.
+                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                    Tooth Extraction
+                  </h3>
+                  Tooth extraction is the removal of a tooth from its socket in
+                  the jawbone. It's done to alleviate pain, prevent infection,
+                  create space for orthodontic treatment, manage wisdom teeth,
+                  prepare for dentures, treat periodontal disease, or address
+                  dental trauma.
                 </p>
                 <p className="mb-6 text-gray-400">
-                  Orthodontists use braces, aligners, and other appliances to
-                  straighten teeth, improve bite, and enhance oral health and
-                  aesthetics. By aligning teeth properly, orthodontics helps
-                  prevent dental issues like cavities and gum disease, while
-                  also improving facial appearance and boosting self-confidence.
+                  Tooth extraction removes a tooth from its socket in the
+                  jawbone. It addresses various dental issues such as severe
+                  decay, infection, overcrowding, impacted wisdom teeth, or
+                  damaged teeth due to trauma. The procedure aims to alleviate
+                  pain, prevent infection from spreading, improve oral health,
+                  and prepare for further dental treatments like dentures or
+                  orthodontics.
                 </p>
                 <h3 className="mb-4 font-semibold text-xl text-gray-400">
-                  Importance of using dental braces
+                  Importance of using Tooth Extraction
                 </h3>
-                <ul
-                  role="list"
-                  className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
-                >
-                  <li>Improves bite function.</li>
-                  <li>Provides versatile treatment options.</li>
-                  <li>Offers long-lasting benefits.</li>
+                <ul className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500">
+                  <li>Prevents infection spread.</li>
+                  <li>Relieves pain.</li>
+                  <li>Manages wisdom teeth.</li>
                 </ul>
+                <br></br>
+                <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                  Price
+                </h3>
+                <p className="mb-6 text-gray-400">$ 12</p>
               </div>
             </div>
             <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
@@ -226,79 +138,6 @@ export default function Services() {
           <div className="group grid w-full grid-cols-2">
             <div className="pr-16 relative flex items-end flex-col before:block">
               <div className="rounded-xl overflow-hidden">
-                <img src={services2} alt="" />
-              </div>
-            </div>
-            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
-              <div>
-                <div className="pr-18">
-                  <p className="peer mb-6 text-gray-400">
-                    Tooth extraction is the removal of a tooth from its socket
-                    in the jawbone. It's done to alleviate pain, prevent
-                    infection, create space for orthodontic treatment, manage
-                    wisdom teeth, prepare for dentures, treat periodontal
-                    disease, or address dental trauma.
-                  </p>
-                  <p className="mb-6 text-gray-400">
-                    Tooth extraction removes a tooth from its socket in the
-                    jawbone. It addresses various dental issues such as severe
-                    decay, infection, overcrowding, impacted wisdom teeth, or
-                    damaged teeth due to trauma. The procedure aims to alleviate
-                    pain, prevent infection from spreading, improve oral health,
-                    and prepare for further dental treatments like dentures or
-                    orthodontics.
-                  </p>
-                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
-                    Importance of using Tooth Extraction
-                  </h3>
-                  <ul className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500">
-                    <li>Prevents infection spread.</li>
-                    <li>Relieves pain.</li>
-                    <li>Manages wisdom teeth.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* PART 3 */}
-      <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div className="w-full items-center mx-auto max-w-screen-lg">
-          <div className="group grid w-full grid-cols-2">
-            <div>
-              <div className="pr-12">
-                <p className="peer mb-6 text-gray-400">11111111111111</p>
-                <p className="mb-6 text-gray-400">22222222222222</p>
-                <h3 className="mb-4 font-semibold text-xl text-gray-400">
-                  Importance of using
-                </h3>
-                <ul
-                  role="list"
-                  className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-500"
-                >
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                </ul>
-              </div>
-            </div>
-            <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
-              <div className="rounded-xl overflow-hidden">
-                <img src={services3} alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* PART 4 */}
-      <div className="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-        <div className="w-full items-center mx-auto max-w-screen-lg">
-          <div className="group grid w-full grid-cols-2">
-            <div className="pr-16 relative flex items-end flex-col before:block">
-              <div className="rounded-xl overflow-hidden">
                 <img src={services4} alt="" />
               </div>
             </div>
@@ -306,6 +145,9 @@ export default function Services() {
               <div>
                 <div className="pr-18">
                   <p className="peer mb-6 text-gray-400">
+                    <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                      Teeth Whitening
+                    </h3>
                     Teeth whitening is a procedure to lighten teeth color,
                     removing stains and discoloration using bleaching agents,
                     either at the dentist's office or with home kits, for a
@@ -328,6 +170,11 @@ export default function Services() {
                     <li>Reverses aging effects</li>
                     <li>Improves oral hygiene awareness</li>
                   </ul>
+                  <br></br>
+                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                    Price
+                  </h3>
+                  <p className="mb-6 text-gray-400">$ 10</p>
                 </div>
               </div>
             </div>
@@ -335,25 +182,25 @@ export default function Services() {
         </div>
       </div>
 
-      {/* PART 5 */}
+      {/* PART 3 */}
       <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
         <div className="w-full items-center mx-auto max-w-screen-lg">
           <div className="group grid w-full grid-cols-2">
             <div>
               <div className="pr-12">
                 <p className="peer mb-6 text-gray-400">
-                  Endodontics is a branch of dentistry focused on diagnosing and
-                  treating issues related to the dental pulp and tissues inside
-                  the tooth, including root canals. It involves procedures such
-                  as root canal therapy to save teeth with infected or damaged
-                  pulp, relieving pain and restoring oral health.
+                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                    Routine Dental
+                  </h3>
+                  A routine dental check-up, also known as a dental examination
+                  or dental check-up, is a standard preventive dental care
+                  appointment that individuals typically undergo every six
+                  months or as recommended by their dentis
                 </p>
                 <p className="mb-6 text-gray-400">
-                  Endodontics specializes in diagnosing and treating problems
-                  related to the dental pulp and tissues inside the tooth. This
-                  includes performing procedures like root canal therapy to save
-                  teeth with infected or damaged pulp, alleviating pain, and
-                  preserving oral health. User
+                  The purpose of a routine dental check-up is to assess and
+                  maintain oral health by identifying any potential issues early
+                  and preventing dental problems from worsening.
                 </p>
                 <h3 className="mb-4 font-semibold text-xl text-gray-400">
                   Importance of using Endodontics
@@ -366,6 +213,11 @@ export default function Services() {
                   <li>Treats infected or inflamed dental pulp.</li>
                   <li>Prevents spread of infection to surrounding tissues.</li>
                 </ul>
+                <br></br>
+                <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                  Price
+                </h3>
+                <p className="mb-6 text-gray-400">$ 12</p>
               </div>
             </div>
             <div className="pl-16 relative flex items-end flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:left-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
@@ -377,7 +229,7 @@ export default function Services() {
         </div>
       </div>
 
-      {/* PART 6 */}
+      {/* PART 4 */}
       <div className="relative flex  flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
         <div className="w-full items-center mx-auto max-w-screen-lg">
           <div className="group grid w-full grid-cols-2">
@@ -390,18 +242,27 @@ export default function Services() {
               <div>
                 <div className="pr-18">
                   <p className="peer mb-6 text-gray-400">
-                    Oral pathology is the study and diagnosis of diseases
-                    affecting the mouth, jaws, and related structures. It
-                    involves identifying and managing conditions like
-                    infections, tumors, and developmental abnormalities through
-                    tissue examination and diagnostic tools. Treatment may
-                    require collaboration with other specialists for
-                    comprehensive care.
+                    <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                      Root Canal Therapy
+                    </h3>
+                    Root canal therapy, also known as endodontic treatment, is a
+                    dental procedure performed to treat infections or damage
+                    within the pulp of a tooth. The pulp is the soft tissue
+                    inside the tooth that contains nerves, blood vessels, and
+                    connective tissue. When the pulp becomes infected or
+                    inflamed, typically due to deep decay, a cracked or
+                    fractured tooth, repeated dental procedures on the tooth, or
+                    trauma, root canal therapy may be necessary to save the
+                    tooth and alleviate pain.
                   </p>
                   <p className="mb-6 text-gray-400">
-                    Oral pathology diagnoses and manages diseases and conditions
-                    affecting the mouth and related structures, including
-                    infections, tumors, and developmental abnormalities.
+                    Root canal therapy effectively removes infection, alleviates
+                    pain, and saves the natural tooth from extraction. By
+                    preserving the tooth's structure and function, root canal
+                    treatment helps maintain proper chewing ability, speech, and
+                    jaw alignment, while also preventing adjacent teeth from
+                    shifting and reducing the need for more extensive dental
+                    work in the future.
                   </p>
                   <h3 className="mb-4 font-semibold text-xl text-gray-400">
                     Imporatnce of using Oral Pathology
@@ -414,6 +275,11 @@ export default function Services() {
                     <li>Prevents complications.</li>
                     <li>Guides effective treatment.</li>
                   </ul>
+                  <br></br>
+                  <h3 className="mb-4 font-semibold text-xl text-gray-400">
+                    Price
+                  </h3>
+                  <p className="mb-6 text-gray-400">$ 19</p>
                 </div>
               </div>
             </div>
