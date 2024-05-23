@@ -17,8 +17,8 @@ const navigation = [
 
 export default function Appointment_Form() {
   const navigate = useNavigate();
-  const { user, login, logout } = useAuth();
-
+  // const { user, login, logout } = useAuth();
+  const { user, isAuthInitialized } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [firstName, setFirstName] = useState("");
@@ -36,6 +36,21 @@ export default function Appointment_Form() {
   useEffect(() => {
     getService();
   }, []);
+
+  useEffect(() => {
+    if (isAuthInitialized) { // Only proceed if auth state is initialized
+      if (!user) {
+        navigate('/login', {
+          state: {
+            role: 'user',
+            message: 'Please login first',
+          },
+        });
+      } else {
+        console.log('User exists:', user);
+      }
+    }
+  }, [user, isAuthInitialized, navigate]);
 
   const getService = () => {
     axios

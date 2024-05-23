@@ -1,7 +1,7 @@
 //import { Button } from "../Components/Button";
 import { Dialog } from "@headlessui/react";
 import { useNavigate, useLocation } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../Assets/logo.png";
 //import DentistImage from "../Assets/DentistImage.jpg";
 import axios from "axios";
@@ -18,16 +18,39 @@ const navigation = [
 
 export const Login = () => {
   const [email, setEmail] = useState("");
+  const location = useLocation();
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState(location.state && location.state.message);
 
   const { user, login, logout } = useAuth();
-  const location = useLocation();
-  let role = location.state.role;
+
+  
+  let role = location.state && location.state.role;
 
   const navigate = useNavigate();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (message) {
+      // Clear the message after displaying it once
+      const timer = setTimeout(() => {
+        setMessage(null);
+        // Optionally, update the location state to remove the message
+        navigate(location.pathname, { replace: true, state: {} });
+      }, 3000); // Adjust the delay as needed
+
+      return () => clearTimeout(timer); // Clean up the timer on unmount
+    }
+  }, [message, navigate, location.pathname]);
+
+  useEffect(() => {
+    if (user) {
+      // Redirect to home page if user is already logged in
+      navigate("/appointment");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,6 +100,7 @@ export const Login = () => {
   return (
     <>
       <div className="bg-">
+        {message}
         <header className="absolute inset-x-0 top-0 z-50">
           <nav
             className="flex items-center justify-between p-6 lg:px-8"
