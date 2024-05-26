@@ -38,16 +38,18 @@ export default function Appointment_Form() {
   }, []);
 
   useEffect(() => {
-    if (isAuthInitialized) { // Only proceed if auth state is initialized
+    if (isAuthInitialized) {
+      // Only proceed if auth state is initialized
       if (!user) {
-        navigate('/login', {
+        toast.info("Please Login First");
+        navigate("/login", {
           state: {
-            role: 'user',
-            message: 'Please login first',
+            role: "user",
+            message: "Please login first",
           },
         });
       } else {
-        console.log('User exists:', user);
+        console.log("User exists:", user);
       }
     }
   }, [user, isAuthInitialized, navigate]);

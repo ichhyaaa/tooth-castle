@@ -348,13 +348,14 @@ export default function Appointment() {
               />
               <div>
                 <p className="text-xl font-bold">Andrew Jones</p>
-                <p className="text-gray-600">Product Developer at Webflow</p>
+                <p className="text-gray-600">Product Develop at Webflow</p>
               </div>
             </div>
             <p className="text-xl">
-              Im absolutely in love with @gather_place. It's the first video
-              calling software built for people who meet to get work done.
-              Feeling whole lot productive.
+              This clinic has helped me overcome my apprehension from dental
+              treatment. With highly skilled and empathatic professionals and
+              best protective measures for infection control, I a happy and
+              satisfied patient. Thankyou Floss Dental
             </p>
           </div>
           <div className="flex flex-col items-center space-y-4">
@@ -369,6 +370,11 @@ export default function Appointment() {
                 <p className="text-gray-600">Manager at Zapier</p>
               </div>
             </div>
+            <p className="text-xl">
+              I highly recommend this dental clinic, visited recently as a new
+              patient requiring treatment. I was at ease within minutes because
+              of the skilled professional doctor working with latest technology.
+            </p>
           </div>
         </div>
 
@@ -381,13 +387,22 @@ export default function Appointment() {
             >
               <FaFacebookF size={100} />
             </a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">
+            <a
+              href="https://x.com/?lang=en"
+              className="text-gray-600 hover:text-gray-900"
+            >
               <FaTwitter size={100} />
             </a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">
+            <a
+              href="https://www.linkedin.com/feed/"
+              className="text-gray-600 hover:text-gray-900"
+            >
               <FaLinkedinIn size={100} />
             </a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">
+            <a
+              href="https://www.instagram.com/?hl=en"
+              className="text-gray-600 hover:text-gray-900"
+            >
               <FaInstagram size={100} />
             </a>
           </div>

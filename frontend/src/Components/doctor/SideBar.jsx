@@ -32,7 +32,7 @@ export default function SideBar() {
               </li>
               <li>
                 <a
-                  href="/admin/appointment"
+                  href="/doctor/userDoctor"
                   target="_blank"
                   className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                 >
@@ -50,7 +50,7 @@ export default function SideBar() {
                 </a>
               </li>
               <li>
-                <a
+                {/* <a
                   href="/admin/doctors"
                   target="_blank"
                   className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
@@ -68,10 +68,10 @@ export default function SideBar() {
                     ></path>
                   </svg>
                   <span className="ml-3 flex-1 whitespace-nowrap">Doctors</span>
-                </a>
+                </a> */}
               </li>
               <li>
-                <a
+                {/* <a
                   href="/admin/patients"
                   className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                 >
@@ -90,7 +90,7 @@ export default function SideBar() {
                   <span className="ml-3 flex-1 whitespace-nowrap">
                     Patients
                   </span>
-                </a>
+                </a> */}
               </li>
               <li>
                 {/* <a

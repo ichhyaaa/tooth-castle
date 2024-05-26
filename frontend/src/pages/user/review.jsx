@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
@@ -20,7 +20,7 @@ const navigation = [
 
 export default function Review() {
   const navigate = useNavigate();
-
+  const { user, isAuthInitialized } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const handleSubmit = () => {
   //   navigate("/");
@@ -37,7 +37,7 @@ export default function Review() {
 
   //const errors = {}; // Initialize an empty object to store errors
 
-  const { user, login, logout } = useAuth();
+  //const { user, login, logout } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,6 +53,7 @@ export default function Review() {
       //   return;
       // }
     }
+
     axios
       .post("http://localhost:8000/api/review", {
         first_name: user.first_name,
@@ -68,10 +69,27 @@ export default function Review() {
         toast.success(res.data.message);
       })
       .catch((err) => {
+        console.log(err);
         console.log(err.response.data.message);
         toast.error(err.data.message);
       });
   };
+
+  useEffect(() => {
+    if (isAuthInitialized) {
+      // Only proceed if auth state is initialized
+      if (!user) {
+        toast.info("Please Login First");
+        navigate("/login", {
+          state: {
+            role: "user",
+          },
+        });
+      } else {
+        console.log("User exists:", user);
+      }
+    }
+  }, [user, isAuthInitialized, navigate]);
 
   return (
     // header

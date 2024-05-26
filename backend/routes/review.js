@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   const newReview = await new Review({ ...body }).save();
   res
     .status(201)
-    .send({ message: "Review created successfully.", review: newReview });
+    .send({ message: "Review sent successfully.", review: newReview });
 });
 
 module.exports = router;

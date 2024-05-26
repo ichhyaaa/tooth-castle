@@ -98,14 +98,18 @@ export default function User() {
             className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
           >
             <main>
-              <div className="pt-6 px-4 mb-6 flex justify-end">
+            <div className="pt-6 px-4 mb-6 flex justify-right">
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                Patients</h1>
+              </div>
+              {/* <div className="pt-6 px-4 mb-6 flex justify-end">
                 <button
                   onClick={() => handleCreate}
                   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                 >
                   Create
                 </button>
-              </div>
+              </div> */}
               <section class="container px-4 mx-auto">
                 <div class="flex flex-col">
                   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
